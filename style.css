@@ -39,7 +39,7 @@ a {
 
 .hero-frame {
   position: relative;
-  width: 100%;
+  width: min(100%, 150vh);
   max-width: 1536px;
   margin: 0 auto;
   overflow: hidden;
@@ -49,6 +49,8 @@ a {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 100vh;
+  object-fit: contain;
 }
 
 .hero-hotspots {
@@ -224,12 +226,15 @@ h1 {
   }
 
   .hero-frame {
+    width: 100%;
     overflow-x: hidden;
   }
 
   .hero-art {
     width: 150%;
     max-width: none;
+    max-height: none;
+    object-fit: initial;
     transform: translateX(-8%);
   }
 
