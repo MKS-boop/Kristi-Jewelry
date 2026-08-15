@@ -28,7 +28,7 @@ h1 { margin:0 0 16px; font-size:clamp(2.1rem,4vw,3.4rem); }
 .product-card:hover { transform:translateY(-4px); border-color:#c99131; box-shadow:0 14px 34px rgba(113,73,17,.14); }
 .concept-badge { position:absolute; z-index:2; top:22px; left:22px; padding:6px 9px; border:1px solid rgba(233,190,104,.65); background:rgba(25,18,12,.82); color:#f0c66e; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; }
 .product-image { display:block; aspect-ratio:1/1; width:100%; margin-bottom:18px; object-fit:cover; background:#1c160f; }
-.product-card h2 { margin:0 0 6px; font-size:1.18rem; }
+.product-card h2 { margin:0 0 6px; font-size:1.18rem; font-weight:600; }
 .product-status { margin:0 0 12px; color:#80694f; font-size:.9rem; }
 .text-button { border:0; padding:0; background:transparent; color:#a66a12; cursor:pointer; font:inherit; font-weight:600; text-decoration:underline; text-underline-offset:4px; }
 .button { display:inline-block; padding:13px 24px; border:1px solid #bd8426; background:#bd8426; color:#fff; transition:.2s ease; }
