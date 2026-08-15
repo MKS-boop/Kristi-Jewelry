@@ -18,13 +18,13 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .hotspot { position:absolute; display:block; border-radius:8px; }
 .hotspot:focus-visible { outline:2px solid #f0b744; outline-offset:2px; }
 .cta-link{left:12.4%;top:58.5%;width:26.5%;height:7.6%}
-/* SHOP NOW overlay: approved position/size. Keep isolated from future hero fitting changes. */
+/* SHOP NOW overlay only. Bounds expanded/repositioned to fully cover the source yellow button seen in the latest screenshot. */
 .shop-now-cover{
   position:absolute !important;
-  left:29.23% !important;
-  top:66.90% !important;
-  width:16.54% !important;
-  height:7.64% !important;
+  left:25.70% !important;
+  top:64.20% !important;
+  width:20.10% !important;
+  height:10.35% !important;
   right:auto !important;
   bottom:auto !important;
   transform:none !important;
