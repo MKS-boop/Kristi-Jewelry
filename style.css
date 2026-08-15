@@ -51,7 +51,7 @@ a {
   width: 100%;
   height: auto;
   max-width: none;
-  max-height: none;
+  max-height: 100vh;
   object-fit: contain;
 }
 
