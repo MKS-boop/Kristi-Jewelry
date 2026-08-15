@@ -1,85 +1,39 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const conceptProducts = [
-  {
-    title: 'Aurora Drop Necklace',
-    image: 'product-01.png',
-    description: 'A luminous teardrop pendant concept exploring refined symmetry, warm gold architecture and a crystal-like focal form within Kristi\'s futuristic visual language.'
-  },
-  {
-    title: 'Orbit Ring',
-    image: 'product-02.png',
-    description: 'A sculptural ring concept inspired by orbital movement, combining polished gold geometry with a futuristic sense of balance and motion.'
-  },
-  {
-    title: 'Lumina Earrings',
-    image: 'product-03.png',
-    description: 'A drop-earring concept built around light, vertical elegance and high-contrast gold detailing for a sleek future-luxury silhouette.'
-  },
-  {
-    title: 'Infinity Bracelet',
-    image: 'product-04.png',
-    description: 'An architectural bracelet concept that translates continuous form and structured gold surfaces into a bold Kristi statement piece.'
-  },
-  {
-    title: 'Kristi Tiara',
-    image: 'product-05.png',
-    description: 'A ceremonial headpiece concept blending regal jewelry language with futuristic structure, designed as a visual study rather than a finished product.'
-  },
-  {
-    title: 'Humanoid Circuit Pendant',
-    image: 'product-06.png',
-    description: 'A youth-oriented pendant concept where electronic circuitry and humanoid form meet gold jewelry language, exploring technology as personal ornament.'
-  },
-  {
-    title: 'Chip Core Necklace',
-    image: 'product-07.png',
-    description: 'A necklace concept built around a recognizable microchip form, reframed with gold contact points and a luxury presentation while preserving its technological identity.'
-  },
-  {
-    title: 'Chip Signature Brooch',
-    image: 'product-08.png',
-    description: 'A brooch concept based on the visual language of a microchip, transformed into a distinctive gold statement accessory for a future-facing collection.'
-  }
+const products = [
+['Aurora Drop Necklace','product-01.png'],['Orbit Ring','product-02.png'],['Lumina Earrings','product-03.png'],['Infinity Bracelet','product-04.png'],['Kristi Tiara','product-05.png'],['Humanoid Circuit Pendant','product-06.png'],['Chip Core Necklace','product-07.png'],['Chip Signature Brooch','product-08.png']];
+const descriptions = [
+'A luminous teardrop pendant concept exploring refined symmetry, warm gold architecture and a crystal-like focal form within Kristi’s futuristic visual language.',
+'A sculptural ring concept inspired by orbital movement, combining polished gold geometry with a futuristic sense of balance and motion.',
+'A drop-earring concept built around light, vertical elegance and high-contrast gold detailing for a sleek future-luxury silhouette.',
+'An architectural bracelet concept that translates continuous form and structured gold surfaces into a bold Kristi statement piece.',
+'A ceremonial headpiece concept blending regal jewelry language with futuristic structure, designed as a visual study rather than a finished product.',
+'A youth-oriented pendant concept where electronic circuitry and humanoid form meet gold jewelry language, exploring technology as personal ornament.',
+'A necklace concept built around a recognizable microchip form, reframed with gold contact points and a luxury presentation while preserving its technological identity.',
+'A brooch concept based on the visual language of a microchip, transformed into a distinctive gold statement accessory for a future-facing collection.'
 ];
 
-const modal = document.getElementById('conceptModal');
-const modalImage = document.getElementById('conceptImage');
-const modalTitle = document.getElementById('conceptTitle');
-const modalDescription = document.getElementById('conceptDescription');
+const en={shopEyebrow:'Concept collection',shopTitle:'Shop Kristi',shopIntro:"These images are visual concept templates that establish Kristi's gold/futuristic design language. They do not represent finished inventory and are not currently offered for sale. Original jewelry photography, final product names, materials and pricing can replace them later without changing the website structure.",aboutEyebrow:'About Kristi',aboutTitle:'Where Heritage Meets the Future',aboutLead:'KRISTI is more than a jewelry brand. It is a creative identity shaped where heritage meets imagination—and where the past begins to speak the language of the future.',aboutP1:'Developed at the intersection of language, art, film, design, and cultural heritage, KRISTI reflects a creative journey that has never belonged to a single discipline.',aboutP2:'Its foundation reaches into philology, linguistics, English literature, and the performing arts, later expanding into the world of visual culture. Work with creative organizations in Armenia—including the Treasures of Armenia Crafts Emporium & Designers’ Guild—deepened this connection to craftsmanship, design, and the enduring artistic traditions of Armenian culture.',aboutP3:'The journey later continued in the United States, bringing together experiences shaped by two worlds and transforming them into a new creative perspective.',aboutP4:'KRISTI Jewelry grows from that intersection: heritage and technology, craftsmanship and imagination, the ancient and the yet-to-come.',aboutP5:'Rather than simply recreating traditional luxury, KRISTI looks toward a new visual language—one in which jewelry can carry memory, identity, technology, and futuristic form.',tagline:'Jewelry from the Future.',behindEyebrow:'Behind Kristi',behindTitle:'Born as Ani Arakelyan in Yerevan, Armenia, Kristi is the creative mind behind the brand.',behindP:'Her journey through language, literature, film, art, cultural heritage, and life between Armenia and the United States ultimately became the foundation for KRISTI—a brand conceived not simply to make jewelry, but to imagine what jewelry can become.',contactEyebrow:'Contact',contactTitle:'Order or ask a question',contactP:'Instagram, WhatsApp and email details will be added here when they are ready.',contactButton:'Contact Kristi',conceptPreview:'Concept Preview',status:'Concept design · Not for sale',view:'View Concept',modalEyebrow:'Kristi Concept Study',modalNotice:'This is a visual design template, not a finished Kristi product and not currently offered for sale. Materials, construction, dimensions, price and final photography will be defined only when an original physical piece is developed.',modalFuture:'Future product page structure: original photography · final materials · dimensions · price · availability · order details.'};
 
-function openConcept(index) {
-  const product = conceptProducts[index];
-  if (!product || !modal) return;
+const translations={
+en,
+ar:{...en,shopEyebrow:'مجموعة تصورية',shopTitle:'تسوق كريستي',shopIntro:'هذه الصور نماذج تصورية بصرية تحدد لغة كريستي الذهبية والمستقبلية. وهي لا تمثل مخزوناً نهائياً ولا تُعرض للبيع حالياً.',aboutEyebrow:'عن كريستي',aboutTitle:'حيث يلتقي التراث بالمستقبل',aboutLead:'كريستي أكثر من علامة مجوهرات؛ إنها هوية إبداعية تتشكل حيث يلتقي التراث بالخيال وحيث يبدأ الماضي في التحدث بلغة المستقبل.',aboutP1:'تطورت كريستي عند تقاطع اللغة والفن والسينما والتصميم والتراث الثقافي، وتعكس رحلة إبداعية لا تنتمي إلى مجال واحد.',aboutP3:'استمرت الرحلة لاحقاً في الولايات المتحدة، جامعةً خبرات عالمين في رؤية إبداعية جديدة.',aboutP4:'تنمو مجوهرات كريستي من هذا التقاطع: التراث والتكنولوجيا، الحرفية والخيال، القديم وما لم يأتِ بعد.',aboutP5:'بدلاً من إعادة إنتاج الفخامة التقليدية، تتطلع كريستي إلى لغة بصرية جديدة تحمل فيها المجوهرات الذاكرة والهوية والتكنولوجيا والشكل المستقبلي.',tagline:'مجوهرات من المستقبل.',behindEyebrow:'خلف كريستي',behindTitle:'وُلدت باسم آني أراكيليان في يريفان، أرمينيا، وهي العقل الإبداعي وراء العلامة.',contactEyebrow:'اتصال',contactTitle:'اطلب أو اطرح سؤالاً',contactP:'ستتم إضافة تفاصيل Instagram وWhatsApp والبريد الإلكتروني عند جاهزيتها.',contactButton:'تواصل مع كريستي',conceptPreview:'معاينة تصورية',status:'تصميم تصوري · غير معروض للبيع',view:'عرض التصور',modalEyebrow:'دراسة كريستي التصورية'},
+hy:{...en,shopEyebrow:'Կոնցեպտ հավաքածու',shopTitle:'Shop Kristi',shopIntro:'Այս պատկերները վիզուալ կոնցեպտային template-ներ են, որոնք ձևավորում են Kristi-ի ոսկեգույն/futuristic դիզայնի լեզուն։ Դրանք պատրաստի ապրանքներ չեն և այս պահին վաճառքի չեն առաջարկվում։',aboutEyebrow:'Kristi-ի մասին',aboutTitle:'Այնտեղ, որտեղ ժառանգությունը հանդիպում է ապագային',aboutLead:'KRISTI-ն ավելին է, քան զարդերի բրենդը։ Այն ստեղծագործական ինքնություն է՝ ձևավորված այնտեղ, որտեղ ժառանգությունը հանդիպում է երևակայությանը, իսկ անցյալը սկսում է խոսել ապագայի լեզվով։',aboutP1:'Լեզվի, արվեստի, կինոյի, դիզայնի և մշակութային ժառանգության խաչմերուկում ձևավորված KRISTI-ն արտացոլում է ստեղծագործական ճանապարհ, որը երբեք չի պատկանել միայն մեկ ոլորտի։',aboutP3:'Հետագայում ճանապարհը շարունակվեց Միացյալ Նահանգներում՝ երկու աշխարհների փորձառությունները միավորելով նոր ստեղծագործական տեսանկյան մեջ։',aboutP4:'KRISTI Jewelry-ն ծնվում է այդ խաչմերուկից՝ ժառանգություն և տեխնոլոգիա, վարպետություն և երևակայություն, հնագույնն ու դեռ չեկածը։',aboutP5:'Ավանդական շքեղությունը պարզապես կրկնելու փոխարեն KRISTI-ն փնտրում է նոր վիզուալ լեզու, որտեղ զարդը կարող է կրել հիշողություն, ինքնություն, տեխնոլոգիա և ապագայամետ ձև։',tagline:'Զարդեր ապագայից։',behindEyebrow:'Kristi-ի հետևում',behindTitle:'Երևանում ծնված Անի Առաքելյանը KRISTI բրենդի ստեղծագործական միտքն է։',contactEyebrow:'Կապ',contactTitle:'Պատվիրել կամ հարց տալ',contactP:'Instagram-ի, WhatsApp-ի և email-ի տվյալները կավելացվեն, երբ պատրաստ լինեն։',contactButton:'Կապվել Kristi-ի հետ',conceptPreview:'Կոնցեպտային Preview',status:'Կոնցեպտ դիզայն · Չի վաճառվում',view:'Դիտել կոնցեպտը',modalEyebrow:'Kristi կոնցեպտային ուսումնասիրություն'},
+zh:{...en,shopEyebrow:'概念系列',shopTitle:'选购 Kristi',shopIntro:'这些图像是用于建立 Kristi 金色未来主义设计语言的视觉概念模板，并非成品库存，目前不对外销售。',aboutEyebrow:'关于 Kristi',aboutTitle:'传承与未来相遇之处',aboutLead:'KRISTI 不仅是一个珠宝品牌，更是一种诞生于传承与想象交汇处的创意身份，让过去开始用未来的语言表达。',aboutP1:'KRISTI 形成于语言、艺术、电影、设计与文化遗产的交汇处，体现了一段从不局限于单一领域的创意旅程。',aboutP3:'这段旅程后来延续到美国，将两个世界的经历融合为新的创意视角。',aboutP4:'KRISTI Jewelry 生长于这种交汇：传承与科技、工艺与想象、古老与尚未来临之物。',aboutP5:'KRISTI 不只是重现传统奢华，而是在探索一种新的视觉语言，让珠宝承载记忆、身份、科技与未来形态。',tagline:'来自未来的珠宝。',behindEyebrow:'Kristi 背后',behindTitle:'Kristi 本名 Ani Arakelyan，出生于亚美尼亚埃里温，是品牌背后的创意灵魂。',contactEyebrow:'联系',contactTitle:'订购或咨询',contactP:'Instagram、WhatsApp 和电子邮件信息将在准备好后添加。',contactButton:'联系 Kristi',conceptPreview:'概念预览',status:'概念设计 · 非卖品',view:'查看概念',modalEyebrow:'Kristi 概念研究'},
+de:{...en,shopEyebrow:'Konzeptkollektion',shopTitle:'Kristi entdecken',shopIntro:'Diese Bilder sind visuelle Konzeptvorlagen für Kristis goldene, futuristische Designsprache. Sie zeigen keine fertigen Produkte und stehen derzeit nicht zum Verkauf.',aboutEyebrow:'Über Kristi',aboutTitle:'Wo Herkunft auf Zukunft trifft',aboutLead:'KRISTI ist mehr als eine Schmuckmarke. Es ist eine kreative Identität, die dort entsteht, wo Herkunft auf Vorstellungskraft trifft und die Vergangenheit beginnt, die Sprache der Zukunft zu sprechen.',aboutP1:'An der Schnittstelle von Sprache, Kunst, Film, Design und kulturellem Erbe entwickelt, spiegelt KRISTI eine kreative Reise wider, die nie nur einer Disziplin gehörte.',aboutP3:'Später führte die Reise in die Vereinigten Staaten und verband Erfahrungen aus zwei Welten zu einer neuen kreativen Perspektive.',aboutP4:'KRISTI Jewelry wächst aus dieser Verbindung: Erbe und Technologie, Handwerk und Vorstellungskraft, das Alte und das Kommende.',aboutP5:'Statt traditionellen Luxus nur neu zu erschaffen, sucht KRISTI nach einer neuen visuellen Sprache, in der Schmuck Erinnerung, Identität, Technologie und futuristische Form tragen kann.',tagline:'Schmuck aus der Zukunft.',behindEyebrow:'Hinter Kristi',behindTitle:'Als Ani Arakelyan in Jerewan, Armenien, geboren, ist Kristi der kreative Kopf hinter der Marke.',contactEyebrow:'Kontakt',contactTitle:'Bestellen oder eine Frage stellen',contactP:'Instagram-, WhatsApp- und E-Mail-Daten werden ergänzt, sobald sie bereit sind.',contactButton:'Kristi kontaktieren',conceptPreview:'Konzeptvorschau',status:'Konzeptdesign · Nicht zum Verkauf',view:'Konzept ansehen',modalEyebrow:'Kristi Konzeptstudie'},
+hi:{...en,shopEyebrow:'कॉन्सेप्ट कलेक्शन',shopTitle:'Kristi देखें',shopIntro:'ये चित्र Kristi की गोल्ड/फ्यूचरिस्टिक डिज़ाइन भाषा को स्थापित करने वाले विज़ुअल कॉन्सेप्ट टेम्पलेट हैं। ये तैयार उत्पाद नहीं हैं और अभी बिक्री के लिए उपलब्ध नहीं हैं।',aboutEyebrow:'Kristi के बारे में',aboutTitle:'जहाँ विरासत भविष्य से मिलती है',aboutLead:'KRISTI केवल एक ज्वेलरी ब्रांड नहीं है। यह एक रचनात्मक पहचान है जहाँ विरासत कल्पना से मिलती है और अतीत भविष्य की भाषा बोलना शुरू करता है।',aboutP1:'भाषा, कला, फिल्म, डिज़ाइन और सांस्कृतिक विरासत के संगम पर विकसित KRISTI एक ऐसी रचनात्मक यात्रा को दर्शाता है जो कभी एक ही क्षेत्र तक सीमित नहीं रही।',aboutP3:'यह यात्रा बाद में संयुक्त राज्य अमेरिका तक पहुँची और दो दुनियाओं के अनुभवों को एक नई रचनात्मक दृष्टि में जोड़ा।',aboutP4:'KRISTI Jewelry इसी संगम से विकसित होता है: विरासत और तकनीक, शिल्प और कल्पना, प्राचीन और आने वाला भविष्य।',aboutP5:'पारंपरिक विलासिता को दोहराने के बजाय KRISTI एक नई दृश्य भाषा की ओर देखता है जिसमें आभूषण स्मृति, पहचान, तकनीक और भविष्यवादी रूप को धारण कर सके।',tagline:'भविष्य से आभूषण।',behindEyebrow:'Kristi के पीछे',behindTitle:'येरेवान, आर्मेनिया में Ani Arakelyan के रूप में जन्मी Kristi ब्रांड की रचनात्मक शक्ति हैं।',contactEyebrow:'संपर्क',contactTitle:'ऑर्डर करें या प्रश्न पूछें',contactP:'Instagram, WhatsApp और ईमेल विवरण तैयार होने पर यहाँ जोड़े जाएंगे।',contactButton:'Kristi से संपर्क करें',conceptPreview:'कॉन्सेप्ट प्रीव्यू',status:'कॉन्सेप्ट डिज़ाइन · बिक्री के लिए नहीं',view:'कॉन्सेप्ट देखें',modalEyebrow:'Kristi कॉन्सेप्ट स्टडी'},
+fa:{...en,shopEyebrow:'مجموعه مفهومی',shopTitle:'مشاهده Kristi',shopIntro:'این تصاویر قالب‌های مفهومی بصری برای شکل‌دادن به زبان طراحی طلایی و آینده‌نگر Kristi هستند؛ محصول نهایی نیستند و در حال حاضر برای فروش عرضه نمی‌شوند.',aboutEyebrow:'درباره Kristi',aboutTitle:'جایی که میراث با آینده دیدار می‌کند',aboutLead:'KRISTI فراتر از یک برند جواهرات است؛ هویتی خلاق که در نقطه تلاقی میراث و تخیل شکل می‌گیرد و گذشته در آن به زبان آینده سخن می‌گوید.',aboutP1:'KRISTI در تقاطع زبان، هنر، سینما، طراحی و میراث فرهنگی شکل گرفته و بازتاب سفری خلاق است که هرگز به یک رشته محدود نبوده است.',aboutP3:'این مسیر بعدها در ایالات متحده ادامه یافت و تجربه دو جهان را در یک نگاه خلاق تازه گرد هم آورد.',aboutP4:'KRISTI Jewelry از همین تلاقی رشد می‌کند: میراث و فناوری، مهارت و تخیل، باستان و آنچه هنوز نیامده است.',aboutP5:'KRISTI به جای تکرار صرف تجمل سنتی، به سوی زبان بصری تازه‌ای می‌رود که در آن جواهر می‌تواند حامل خاطره، هویت، فناوری و فرم آینده‌نگر باشد.',tagline:'جواهرات از آینده.',behindEyebrow:'پشت Kristi',behindTitle:'Kristi با نام Ani Arakelyan در ایروان ارمنستان متولد شد و ذهن خلاق پشت این برند است.',contactEyebrow:'تماس',contactTitle:'سفارش دهید یا سؤال بپرسید',contactP:'اطلاعات Instagram، WhatsApp و ایمیل پس از آماده شدن اضافه خواهد شد.',contactButton:'تماس با Kristi',conceptPreview:'پیش‌نمایش مفهومی',status:'طراحی مفهومی · برای فروش نیست',view:'مشاهده مفهوم',modalEyebrow:'مطالعه مفهومی Kristi'},
+ru:{...en,shopEyebrow:'Концептуальная коллекция',shopTitle:'Коллекция Kristi',shopIntro:'Эти изображения — визуальные концепт-шаблоны, формирующие золотой футуристический язык дизайна Kristi. Это не готовые изделия, и сейчас они не предлагаются к продаже.',aboutEyebrow:'О Kristi',aboutTitle:'Где наследие встречается с будущим',aboutLead:'KRISTI — больше, чем ювелирный бренд. Это творческая идентичность, рожденная там, где наследие встречается с воображением, а прошлое начинает говорить на языке будущего.',aboutP1:'Сформированный на пересечении языка, искусства, кино, дизайна и культурного наследия, KRISTI отражает творческий путь, который никогда не принадлежал одной дисциплине.',aboutP3:'Позже этот путь продолжился в Соединённых Штатах, объединив опыт двух миров в новом творческом взгляде.',aboutP4:'KRISTI Jewelry растёт из этого пересечения: наследие и технологии, мастерство и воображение, древнее и ещё не наступившее.',aboutP5:'Вместо простого повторения традиционной роскоши KRISTI ищет новый визуальный язык, в котором украшение может нести память, идентичность, технологии и футуристическую форму.',tagline:'Украшения из будущего.',behindEyebrow:'За брендом Kristi',behindTitle:'Кристи, родившаяся как Ани Аракелян в Ереване, Армения, — творческий автор бренда.',contactEyebrow:'Контакты',contactTitle:'Заказать или задать вопрос',contactP:'Данные Instagram, WhatsApp и электронной почты будут добавлены, когда будут готовы.',contactButton:'Связаться с Kristi',conceptPreview:'Концепт-превью',status:'Концепт-дизайн · Не продаётся',view:'Смотреть концепт',modalEyebrow:'Концепт-исследование Kristi'},
+es:{...en,shopEyebrow:'Colección conceptual',shopTitle:'Descubre Kristi',shopIntro:'Estas imágenes son plantillas visuales conceptuales que establecen el lenguaje de diseño dorado y futurista de Kristi. No representan productos terminados y actualmente no están a la venta.',aboutEyebrow:'Sobre Kristi',aboutTitle:'Donde la herencia se encuentra con el futuro',aboutLead:'KRISTI es más que una marca de joyería. Es una identidad creativa formada donde la herencia se encuentra con la imaginación y donde el pasado comienza a hablar el lenguaje del futuro.',aboutP1:'Desarrollada en la intersección del lenguaje, el arte, el cine, el diseño y el patrimonio cultural, KRISTI refleja un viaje creativo que nunca ha pertenecido a una sola disciplina.',aboutP3:'El viaje continuó más tarde en Estados Unidos, reuniendo experiencias de dos mundos en una nueva perspectiva creativa.',aboutP4:'KRISTI Jewelry nace de esa intersección: herencia y tecnología, artesanía e imaginación, lo antiguo y lo que aún está por venir.',aboutP5:'En lugar de recrear simplemente el lujo tradicional, KRISTI busca un nuevo lenguaje visual en el que la joyería pueda llevar memoria, identidad, tecnología y forma futurista.',tagline:'Joyería del futuro.',behindEyebrow:'Detrás de Kristi',behindTitle:'Nacida como Ani Arakelyan en Ereván, Armenia, Kristi es la mente creativa detrás de la marca.',contactEyebrow:'Contacto',contactTitle:'Haz un pedido o una pregunta',contactP:'Los datos de Instagram, WhatsApp y correo electrónico se añadirán cuando estén listos.',contactButton:'Contactar con Kristi',conceptPreview:'Vista conceptual',status:'Diseño conceptual · No está a la venta',view:'Ver concepto',modalEyebrow:'Estudio conceptual Kristi'},
+tr:{...en,shopEyebrow:'Konsept koleksiyonu',shopTitle:'Kristi’yi Keşfet',shopIntro:'Bu görseller Kristi’nin altın/fütüristik tasarım dilini oluşturan görsel konsept şablonlarıdır. Bitmiş ürünleri temsil etmez ve şu anda satışa sunulmamaktadır.',aboutEyebrow:'Kristi Hakkında',aboutTitle:'Mirasın Gelecekle Buluştuğu Yer',aboutLead:'KRISTI bir mücevher markasından fazlasıdır. Mirasın hayal gücüyle buluştuğu ve geçmişin geleceğin dilini konuşmaya başladığı yerde şekillenen yaratıcı bir kimliktir.',aboutP1:'Dil, sanat, film, tasarım ve kültürel mirasın kesişiminde gelişen KRISTI, hiçbir zaman tek bir disipline ait olmayan yaratıcı bir yolculuğu yansıtır.',aboutP3:'Yolculuk daha sonra Amerika Birleşik Devletleri’nde devam ederek iki dünyanın deneyimlerini yeni bir yaratıcı bakışta birleştirdi.',aboutP4:'KRISTI Jewelry bu kesişimden doğar: miras ve teknoloji, zanaat ve hayal gücü, kadim olan ve henüz gelmemiş olan.',aboutP5:'KRISTI geleneksel lüksü yalnızca yeniden yaratmak yerine, mücevherin hafıza, kimlik, teknoloji ve fütüristik biçim taşıyabildiği yeni bir görsel dile yönelir.',tagline:'Gelecekten Mücevher.',behindEyebrow:'Kristi’nin Arkasında',behindTitle:'Ermenistan’ın Erivan kentinde Ani Arakelyan olarak doğan Kristi, markanın arkasındaki yaratıcı zihindir.',contactEyebrow:'İletişim',contactTitle:'Sipariş verin veya soru sorun',contactP:'Instagram, WhatsApp ve e-posta bilgileri hazır olduğunda buraya eklenecektir.',contactButton:'Kristi ile iletişim',conceptPreview:'Konsept Önizleme',status:'Konsept tasarım · Satılık değil',view:'Konsepti Gör',modalEyebrow:'Kristi Konsept Çalışması'}
+};
 
-  modalImage.src = product.image;
-  modalImage.alt = `${product.title} concept preview`;
-  modalTitle.textContent = product.title;
-  modalDescription.textContent = product.description;
-  modal.classList.add('is-open');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
-}
-
-function closeConcept() {
-  if (!modal) return;
-  modal.classList.remove('is-open');
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('modal-open');
-}
-
-document.querySelectorAll('.product-card').forEach((card) => {
-  const button = card.querySelector('.concept-button');
-  if (!button) return;
-  button.addEventListener('click', () => openConcept(Number(card.dataset.product)));
-});
-
-document.querySelectorAll('[data-close-modal]').forEach((element) => {
-  element.addEventListener('click', closeConcept);
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && modal?.classList.contains('is-open')) {
-    closeConcept();
-  }
-});
+const productGrid=document.getElementById('productGrid');
+const modal=document.getElementById('conceptModal'),modalImage=document.getElementById('conceptImage'),modalTitle=document.getElementById('conceptTitle'),modalDescription=document.getElementById('conceptDescription');
+let currentLanguage='en';
+function renderProducts(){const t=translations[currentLanguage]||en;productGrid.innerHTML=products.map((p,i)=>`<article class="product-card" data-product="${i}"><span class="concept-badge">${t.conceptPreview}</span><img class="product-image" src="${p[1]}" alt="${p[0]} concept"><h2>${p[0]}</h2><p class="product-status">${t.status}</p><button class="text-button concept-button" type="button">${t.view}</button></article>`).join('');document.querySelectorAll('.concept-button').forEach((b)=>b.addEventListener('click',()=>openConcept(Number(b.closest('.product-card').dataset.product))));}
+function applyLanguage(code){currentLanguage=translations[code]?code:'en';const t=translations[currentLanguage];document.documentElement.lang=currentLanguage;document.documentElement.dir=['ar','fa'].includes(currentLanguage)?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(t[key])el.textContent=t[key];});renderProducts();localStorage.setItem('kristiLanguage',currentLanguage);}
+function openConcept(index){const p=products[index];if(!p||!modal)return;modalImage.src=p[1];modalImage.alt=`${p[0]} concept preview`;modalTitle.textContent=p[0];modalDescription.textContent=descriptions[index];modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
+function closeConcept(){if(!modal)return;modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');}
+document.querySelectorAll('[data-close-modal]').forEach(el=>el.addEventListener('click',closeConcept));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal?.classList.contains('is-open'))closeConcept();});
+const selector=document.getElementById('languageSelect');const saved=localStorage.getItem('kristiLanguage')||'en';selector.value=saved;selector.addEventListener('change',e=>applyLanguage(e.target.value));applyLanguage(saved);
