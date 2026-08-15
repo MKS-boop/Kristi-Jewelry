@@ -186,6 +186,87 @@ h1 {
   color: #8d5e17;
 }
 
+.about-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(210, 151, 45, 0.12), transparent 28%),
+    linear-gradient(180deg, #17110d 0%, #24180f 52%, #120d0a 100%);
+  color: #ead9bd;
+}
+
+.about-wrap {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.35fr);
+  gap: clamp(44px, 7vw, 96px);
+  align-items: start;
+}
+
+.about-symbol-wrap {
+  position: sticky;
+  top: 40px;
+}
+
+.about-symbol {
+  display: block;
+  width: min(100%, 470px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin: 0 auto;
+  border: 1px solid rgba(218, 167, 77, 0.24);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.about-content {
+  max-width: 760px;
+}
+
+.about-section .eyebrow {
+  color: #d8a44a;
+}
+
+.about-section h1,
+.about-section h2 {
+  color: #f0c66e;
+}
+
+.about-section h1 {
+  margin-bottom: 28px;
+}
+
+.about-section h2 {
+  margin: 0 0 18px;
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
+}
+
+.about-content p {
+  margin: 0 0 20px;
+  color: #e4d6c3;
+  font-size: 1.02rem;
+}
+
+.about-lead {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.25rem, 2vw, 1.65rem) !important;
+  line-height: 1.55;
+  color: #f3dfb7 !important;
+}
+
+.about-signature {
+  margin-top: 30px !important;
+  color: #e6b04c !important;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.45rem !important;
+  font-style: italic;
+}
+
+.about-divider {
+  width: 100%;
+  height: 1px;
+  margin: 42px 0 34px;
+  background: linear-gradient(90deg, rgba(218, 167, 77, 0.75), rgba(218, 167, 77, 0.05));
+}
+
 .contact-section {
   background: #2d2118;
   color: #f6ead6;
@@ -217,6 +298,18 @@ h1 {
 @media (max-width: 1000px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .about-symbol-wrap {
+    position: static;
+  }
+
+  .about-symbol {
+    width: min(420px, 78vw);
   }
 }
 
@@ -261,6 +354,14 @@ h1 {
 
   .product-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-wrap {
+    gap: 38px;
+  }
+
+  .about-content p {
+    font-size: 0.98rem;
   }
 
   .footer-wrap {
