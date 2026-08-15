@@ -5,9 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kristi Jewelry — Jewelry from the Future">
   <title>Kristi Jewelry</title>
-  <link rel="stylesheet" href="style.css?v=20260814-concepts1">
+  <link rel="stylesheet" href="style.css?v=20260814-languages1">
 </head>
 <body>
+  <div class="language-bar" aria-label="Language selector">
+    <div class="language-bar-inner">
+      <span class="language-label">Language</span>
+      <select id="languageSelect" class="language-select" aria-label="Select language">
+        <option value="en">English</option>
+        <option value="ar">Arabic</option>
+        <option value="hy">Armenian</option>
+        <option value="zh">Chinese</option>
+        <option value="de">German</option>
+        <option value="hi">Hindi</option>
+        <option value="fa">Persian</option>
+        <option value="ru">Russian</option>
+        <option value="es">Spanish</option>
+        <option value="tr">Turkish</option>
+      </select>
+    </div>
+  </div>
+
   <main>
     <section class="hero" id="home" aria-label="Kristi Jewelry hero">
       <div class="hero-frame">
@@ -23,28 +41,14 @@
       </div>
     </section>
 
-    <nav class="mobile-nav" aria-label="Mobile navigation">
-      <a href="#home">Home</a><a href="#shop">Shop</a><a href="#shop">Collections</a><a href="#about">About</a><a href="#contact">Contact</a>
-    </nav>
-
     <section class="section" id="shop">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Concept collection</p>
-          <h1>Shop Kristi</h1>
-          <p>These images are visual concept templates that establish Kristi's gold/futuristic design language. They do not represent finished inventory and are not currently offered for sale. Original jewelry photography, final product names, materials and pricing can replace them later without changing the website structure.</p>
+          <p class="eyebrow" data-i18n="shopEyebrow">Concept collection</p>
+          <h1 data-i18n="shopTitle">Shop Kristi</h1>
+          <p data-i18n="shopIntro">These images are visual concept templates that establish Kristi's gold/futuristic design language. They do not represent finished inventory and are not currently offered for sale. Original jewelry photography, final product names, materials and pricing can replace them later without changing the website structure.</p>
         </div>
-
-        <div class="product-grid">
-          <article class="product-card" data-product="0"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-01.png" alt="Gold teardrop crystal necklace concept"><h2>Aurora Drop Necklace</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-          <article class="product-card" data-product="1"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-02.png" alt="Futuristic gold orbit ring concept"><h2>Orbit Ring</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-          <article class="product-card" data-product="2"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-03.png" alt="Futuristic gold drop earrings concept"><h2>Lumina Earrings</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-          <article class="product-card" data-product="3"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-04.png" alt="Architectural gold bracelet concept"><h2>Infinity Bracelet</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-          <article class="product-card" data-product="4"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-05.png" alt="Gold crystal tiara concept"><h2>Kristi Tiara</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-          <article class="product-card" data-product="5"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-06.png" alt="Humanoid circuit pendant concept"><h2>Humanoid Circuit Pendant</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-          <article class="product-card" data-product="6"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-07.png" alt="Microchip inspired gold necklace concept"><h2>Chip Core Necklace</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-          <article class="product-card" data-product="7"><span class="concept-badge">Concept Preview</span><img class="product-image" src="product-08.png" alt="Microchip inspired gold brooch concept"><h2>Chip Signature Brooch</h2><p class="product-status">Concept design · Not for sale</p><button class="text-button concept-button" type="button">View Concept</button></article>
-        </div>
+        <div class="product-grid" id="productGrid"></div>
       </div>
     </section>
 
@@ -52,23 +56,30 @@
       <div class="container about-wrap">
         <div class="about-symbol-wrap"><img class="about-symbol" src="Kristi-symbol.png" alt="Kristi gold T emblem"></div>
         <div class="about-content">
-          <p class="eyebrow">About Kristi</p><h1>Where Heritage Meets the Future</h1>
-          <p class="about-lead"><strong>KRISTI is more than a jewelry brand. It is a creative identity shaped where heritage meets imagination—and where the past begins to speak the language of the future.</strong></p>
-          <p>Developed at the intersection of language, art, film, design, and cultural heritage, KRISTI reflects a creative journey that has never belonged to a single discipline.</p>
-          <p>Its foundation reaches into philology, linguistics, English literature, and the performing arts, later expanding into the world of visual culture. Work with creative organizations in Armenia—including the <em>Treasures of Armenia Crafts Emporium &amp; Designers’ Guild</em>—deepened this connection to craftsmanship, design, and the enduring artistic traditions of Armenian culture.</p>
-          <p>The journey later continued in the United States, bringing together experiences shaped by two worlds and transforming them into a new creative perspective.</p>
-          <p><strong>KRISTI Jewelry grows from that intersection: heritage and technology, craftsmanship and imagination, the ancient and the yet-to-come.</strong></p>
-          <p>Rather than simply recreating traditional luxury, KRISTI looks toward a new visual language—one in which jewelry can carry memory, identity, technology, and futuristic form.</p>
-          <p class="about-signature">Jewelry from the Future.</p>
+          <p class="eyebrow" data-i18n="aboutEyebrow">About Kristi</p>
+          <h1 data-i18n="aboutTitle">Where Heritage Meets the Future</h1>
+          <p class="about-lead"><strong data-i18n="aboutLead">KRISTI is more than a jewelry brand. It is a creative identity shaped where heritage meets imagination—and where the past begins to speak the language of the future.</strong></p>
+          <p data-i18n="aboutP1">Developed at the intersection of language, art, film, design, and cultural heritage, KRISTI reflects a creative journey that has never belonged to a single discipline.</p>
+          <p data-i18n="aboutP2">Its foundation reaches into philology, linguistics, English literature, and the performing arts, later expanding into the world of visual culture. Work with creative organizations in Armenia—including the Treasures of Armenia Crafts Emporium &amp; Designers’ Guild—deepened this connection to craftsmanship, design, and the enduring artistic traditions of Armenian culture.</p>
+          <p data-i18n="aboutP3">The journey later continued in the United States, bringing together experiences shaped by two worlds and transforming them into a new creative perspective.</p>
+          <p><strong data-i18n="aboutP4">KRISTI Jewelry grows from that intersection: heritage and technology, craftsmanship and imagination, the ancient and the yet-to-come.</strong></p>
+          <p data-i18n="aboutP5">Rather than simply recreating traditional luxury, KRISTI looks toward a new visual language—one in which jewelry can carry memory, identity, technology, and futuristic form.</p>
+          <p class="about-signature" data-i18n="tagline">Jewelry from the Future.</p>
           <div class="about-divider" aria-hidden="true"></div>
-          <p class="eyebrow">Behind Kristi</p><h2>Born as Ani Arakelyan in Yerevan, Armenia, Kristi is the creative mind behind the brand.</h2>
-          <p>Her journey through language, literature, film, art, cultural heritage, and life between Armenia and the United States ultimately became the foundation for KRISTI—a brand conceived not simply to make jewelry, but to imagine what jewelry can become.</p>
+          <p class="eyebrow" data-i18n="behindEyebrow">Behind Kristi</p>
+          <h2 data-i18n="behindTitle">Born as Ani Arakelyan in Yerevan, Armenia, Kristi is the creative mind behind the brand.</h2>
+          <p data-i18n="behindP">Her journey through language, literature, film, art, cultural heritage, and life between Armenia and the United States ultimately became the foundation for KRISTI—a brand conceived not simply to make jewelry, but to imagine what jewelry can become.</p>
         </div>
       </div>
     </section>
 
     <section class="section contact-section" id="contact">
-      <div class="container narrow"><p class="eyebrow">Contact</p><h1>Order or ask a question</h1><p>Instagram, WhatsApp and email details will be added here when they are ready.</p><a class="button secondary" href="mailto:hello@example.com">Contact Kristi</a></div>
+      <div class="container narrow">
+        <p class="eyebrow" data-i18n="contactEyebrow">Contact</p>
+        <h1 data-i18n="contactTitle">Order or ask a question</h1>
+        <p data-i18n="contactP">Instagram, WhatsApp and email details will be added here when they are ready.</p>
+        <a class="button secondary" href="mailto:hello@example.com" data-i18n="contactButton">Contact Kristi</a>
+      </div>
     </section>
   </main>
 
@@ -79,17 +90,17 @@
       <div class="concept-modal-grid">
         <img id="conceptImage" class="concept-modal-image" src="product-01.png" alt="">
         <div class="concept-modal-content">
-          <p class="eyebrow">Kristi Concept Study</p>
+          <p class="eyebrow" data-i18n="modalEyebrow">Kristi Concept Study</p>
           <h2 id="conceptTitle">Aurora Drop Necklace</h2>
           <p id="conceptDescription" class="concept-description"></p>
-          <div class="concept-notice"><strong>Concept Preview</strong><span>This is a visual design template, not a finished Kristi product and not currently offered for sale. Materials, construction, dimensions, price and final photography will be defined only when an original physical piece is developed.</span></div>
-          <p class="concept-future">Future product page structure: original photography · final materials · dimensions · price · availability · order details.</p>
+          <div class="concept-notice"><strong data-i18n="conceptPreview">Concept Preview</strong><span data-i18n="modalNotice">This is a visual design template, not a finished Kristi product and not currently offered for sale. Materials, construction, dimensions, price and final photography will be defined only when an original physical piece is developed.</span></div>
+          <p class="concept-future" data-i18n="modalFuture">Future product page structure: original photography · final materials · dimensions · price · availability · order details.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="site-footer"><div class="container footer-wrap"><p>© <span id="year"></span> Kristi Jewelry</p><p>Jewelry from the Future.</p></div></footer>
-  <script src="script.js?v=20260814-concepts1"></script>
+  <footer class="site-footer"><div class="container footer-wrap"><p>© <span id="year"></span> Kristi Jewelry</p><p data-i18n="tagline">Jewelry from the Future.</p></div></footer>
+  <script src="script.js?v=20260814-languages1"></script>
 </body>
 </html>
