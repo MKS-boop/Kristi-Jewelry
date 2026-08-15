@@ -67,7 +67,7 @@
           <p class="about-signature" data-i18n="tagline">Jewelry from the Future.</p>
           <div class="about-divider" aria-hidden="true"></div>
           <p class="eyebrow" data-i18n="behindEyebrow">Behind Kristi</p>
-          <h2 data-i18n="behindTitle">Born as Ani Arakelyan in Yerevan, Armenia, Kristi is the creative mind behind the brand.</h2>
+          <h2 data-i18n="behindTitle">Kristi, born in Yerevan, Armenia, is the creative mind behind the brand.</h2>
           <p data-i18n="behindP">Her journey through language, literature, film, art, cultural heritage, and life between Armenia and the United States ultimately became the foundation for KRISTI—a brand conceived not simply to make jewelry, but to imagine what jewelry can become.</p>
         </div>
       </div>
@@ -101,6 +101,30 @@
   </div>
 
   <footer class="site-footer"><div class="container footer-wrap"><p>© <span id="year"></span> Kristi Jewelry</p><p data-i18n="tagline">Jewelry from the Future.</p></div></footer>
-  <script src="script.js?v=20260814-languages2"></script>
+  <script src="script.js?v=20260814-languages3"></script>
+  <script>
+    const kristiBehindTitles = {
+      en: 'Kristi, born in Yerevan, Armenia, is the creative mind behind the brand.',
+      ar: 'كريستي، المولودة في يريفان، أرمينيا، هي العقل الإبداعي وراء العلامة.',
+      hy: 'Երևանում, Հայաստանում ծնված Քրիստին բրենդի ստեղծագործական միտքն է։',
+      zh: '克里斯蒂出生于亚美尼亚埃里温，是品牌背后的创意灵魂。',
+      de: 'Kristi, geboren in Jerewan, Armenien, ist der kreative Kopf hinter der Marke.',
+      hi: 'येरेवान, आर्मेनिया में जन्मी क्रिस्टी ब्रांड की रचनात्मक शक्ति हैं।',
+      fa: 'کریستی، متولد ایروان ارمنستان، ذهن خلاق پشت این برند است.',
+      ru: 'Кристи, родившаяся в Ереване, Армения, — творческий автор бренда.',
+      es: 'Kristi, nacida en Ereván, Armenia, es la mente creativa detrás de la marca.',
+      tr: 'Ermenistan’ın Erivan kentinde doğan Kristi, markanın arkasındaki yaratıcı zihindir.'
+    };
+
+    function updateKristiBehindTitle() {
+      const language = document.documentElement.lang || 'en';
+      const title = document.querySelector('[data-i18n="behindTitle"]');
+      if (title && kristiBehindTitles[language]) title.textContent = kristiBehindTitles[language];
+    }
+
+    const languageSelect = document.getElementById('languageSelect');
+    updateKristiBehindTitle();
+    languageSelect?.addEventListener('change', () => setTimeout(updateKristiBehindTitle, 0));
+  </script>
 </body>
 </html>
