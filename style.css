@@ -6,10 +6,11 @@ a { color:inherit; text-decoration:none; }
 button,a { -webkit-tap-highlight-color:transparent; }
 .container { width:min(1280px,92%); margin:0 auto; }
 .narrow { max-width:720px; }
-.language-bar { position:fixed; top:18px; right:20px; z-index:50; }
-.language-bar-inner { display:flex; align-items:center; gap:9px; padding:7px 9px 7px 12px; border:1px solid rgba(224,177,83,.58); background:rgba(25,18,12,.82); backdrop-filter:blur(10px); box-shadow:0 8px 28px rgba(0,0,0,.18); }
-.language-label { color:#dcb464; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; }
-.language-select { min-width:105px; border:0; outline:0; background:#21170f; color:#f1d28e; padding:6px 24px 6px 8px; font:inherit; font-size:.72rem; cursor:pointer; }
+.language-bar { position:fixed; top:16px; right:28px; z-index:50; max-width:190px; }
+.language-bar-inner { display:flex; align-items:center; gap:6px; height:34px; padding:3px 5px 3px 9px; border:1px solid rgba(224,177,83,.48); border-radius:17px; background:rgba(25,18,12,.72); backdrop-filter:blur(9px); box-shadow:0 5px 18px rgba(0,0,0,.14); }
+.language-label { color:#dcb464; font-size:.50rem; line-height:1; letter-spacing:.11em; text-transform:uppercase; white-space:nowrap; }
+.language-select { width:92px; min-width:0; height:26px; border:0; outline:0; background:transparent; color:#f1d28e; padding:2px 18px 2px 6px; font:inherit; font-size:.64rem; line-height:1; cursor:pointer; }
+.language-select option { background:#21170f; color:#f1d28e; }
 .hero { width:100vw; height:100vh; background:#2a2019; overflow:hidden; }
 .hero-frame { position:relative; width:100%; height:100%; max-width:none; margin:0; overflow:hidden; }
 .hero-art { display:block; width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center top; }
@@ -66,5 +67,5 @@ h1 { margin:0 0 16px; font-size:clamp(2.1rem,4vw,3.4rem); }
 .footer-wrap p { margin:0; }
 html[dir="rtl"] .about-content,html[dir="rtl"] .section-heading,html[dir="rtl"] .contact-section { text-align:right; }
 html[dir="rtl"] .concept-badge { left:auto; right:22px; }
-@media(max-width:1000px){.product-grid{grid-template-columns:repeat(2,1fr)}.about-wrap{grid-template-columns:1fr}.about-symbol-wrap{position:static}.about-symbol{width:min(420px,78vw)}.concept-modal-grid{grid-template-columns:1fr}.concept-modal-image{min-height:0;aspect-ratio:1/1}}
-@media(max-width:760px){.language-bar{top:10px;right:10px}.language-label{display:none}.language-bar-inner{padding:5px}.language-select{min-width:88px;font-size:.66rem}.hero{width:100%;height:auto}.hero-frame{width:100%;height:auto;overflow:hidden}.hero-art{width:100%;height:auto;max-width:100%;max-height:none;object-fit:contain;object-position:center top;transform:none}.hero-hotspots{display:block}.section{padding:56px 0}.product-grid{grid-template-columns:1fr}.concept-modal{padding:10px}.concept-modal-panel{width:100%;max-height:94vh}.concept-modal-content{padding:28px 22px 34px}.concept-modal-close{top:10px;right:10px}.about-wrap{gap:38px}.about-content p{font-size:.98rem}.footer-wrap{flex-direction:column}}
+@media(max-width:1000px){.language-bar{right:16px;max-width:150px}.language-label{display:none}.language-bar-inner{height:32px;padding:3px 5px;border-radius:16px}.language-select{width:110px;font-size:.62rem}.product-grid{grid-template-columns:repeat(2,1fr)}.about-wrap{grid-template-columns:1fr}.about-symbol-wrap{position:static}.about-symbol{width:min(420px,78vw)}.concept-modal-grid{grid-template-columns:1fr}.concept-modal-image{min-height:0;aspect-ratio:1/1}}
+@media(max-width:760px){.language-bar{top:8px;right:8px;max-width:112px}.language-bar-inner{height:29px;padding:2px 4px;border-radius:15px;background:rgba(25,18,12,.78)}.language-select{width:102px;height:24px;padding:1px 16px 1px 6px;font-size:.60rem}.hero{width:100%;height:auto}.hero-frame{width:100%;height:auto;overflow:hidden}.hero-art{width:100%;height:auto;max-width:100%;max-height:none;object-fit:contain;object-position:center top;transform:none}.hero-hotspots{display:block}.section{padding:56px 0}.product-grid{grid-template-columns:1fr}.concept-modal{padding:10px}.concept-modal-panel{width:100%;max-height:94vh}.concept-modal-content{padding:28px 22px 34px}.concept-modal-close{top:10px;right:10px}.about-wrap{gap:38px}.about-content p{font-size:.98rem}.footer-wrap{flex-direction:column}}
