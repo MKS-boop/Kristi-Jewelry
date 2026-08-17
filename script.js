@@ -18,7 +18,7 @@ document.write('<script src="/script-base.js?v=20260817-six"><\/script>');
     {product:0, src:'7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png?v=green8'},
     {product:4, src:'61AC2F61-DDC9-4E44-AB54-A99A268A681D.png?v=green8'},
     {product:2, src:'4907FEF0-19B9-4690-8B51-5B2FA320AD58.png?v=green8'},
-    {product:3, src:'19CE06DF-C75C-4676-9477-ADB000875EB6.png?v=bracelet3'}
+    {product:3, src:'19CE06DF-C75C-4676-9477-ADB000875EB6.png?v=bracelet4'}
   ];
 
   function setGridColumns(grid){
@@ -58,7 +58,6 @@ document.write('<script src="/script-base.js?v=20260817-six"><\/script>');
     const frame = document.querySelector('.hero-frame');
     if(!frame || frame.querySelector('.green-hero-cta')) return;
 
-    /* Disable the older pseudo-element CTA zones that were sitting over the tagline. */
     const fixStyle = document.createElement('style');
     fixStyle.textContent = '.hotspot-collections::after,.hotspot-shop::after{content:none!important;display:none!important;pointer-events:none!important}';
     document.head.appendChild(fixStyle);
