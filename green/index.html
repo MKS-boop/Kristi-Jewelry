@@ -21,6 +21,48 @@
   <div class="concept-modal" id="conceptModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="conceptTitle"><div class="concept-modal-backdrop" data-close-modal></div><div class="concept-modal-panel"><button class="concept-modal-close" type="button" aria-label="Close concept preview" data-close-modal>×</button><div class="concept-modal-grid"><img id="conceptImage" class="concept-modal-image" src="7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png" alt=""><div class="concept-modal-content"><p class="eyebrow" data-i18n="modalEyebrow">Kristi Concept Study</p><h2 id="conceptTitle">Green Collection</h2><p id="conceptDescription" class="concept-description"></p><div class="concept-notice"><strong data-i18n="conceptPreview">Concept Preview</strong><span data-i18n="modalNotice">This is a visual design template, not a finished Kristi product and not currently offered for sale.</span></div></div></div></div></div>
   <footer class="site-footer"><div class="container footer-wrap"><p>© <span id="year"></span> Kristi Jewelry</p><p data-i18n="tagline">Jewelry from the Future.</p></div></footer>
   <script src="script.js?v=20260815-2205"></script>
-  <script>(function(){const greenProducts=[{src:'7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png?v=green4',name:'Green Gemstone Necklace'},{src:'4907FEF0-19B9-4690-8B51-5B2FA320AD58.png?v=green4',name:'Green Gemstone Earrings'},{src:'E457D36E-5F1A-4B9F-81D8-C728FC636D9C.png?v=green4',name:'Green Gemstone Ring'},{src:'61AC2F61-DDC9-4E44-AB54-A99A268A681D.png?v=green4',name:'Green Gemstone Crown'}];function lockGreenCollection(){const grid=document.getElementById('productGrid');if(!grid)return;const cards=[...grid.children];cards.slice(4).forEach(card=>card.remove());[...grid.children].forEach((card,i)=>{const p=greenProducts[i];if(!p)return;const img=card.querySelector('.product-image');if(img)img.src=p.src;const title=card.querySelector('h2,h3,.product-name');if(title)title.textContent=p.name;});}lockGreenCollection();requestAnimationFrame(lockGreenCollection);setTimeout(lockGreenCollection,100);setTimeout(lockGreenCollection,500);const grid=document.getElementById('productGrid');if(grid)new MutationObserver(lockGreenCollection).observe(grid,{childList:true});const lang=document.getElementById('languageSelect');if(lang)lang.addEventListener('change',()=>setTimeout(lockGreenCollection,0));})();</script>
+  <script>
+  (function(){
+    const greenProducts=[
+      {src:'7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png?v=green5',name:'Green Gemstone Necklace'},
+      {src:'4907FEF0-19B9-4690-8B51-5B2FA320AD58.png?v=green5',name:'Green Gemstone Earrings'},
+      {src:'E457D36E-5F1A-4B9F-81D8-C728FC636D9C.png?v=green5',name:'Green Gemstone Ring'},
+      {src:'61AC2F61-DDC9-4E44-AB54-A99A268A681D.png?v=green5',name:'Green Gemstone Crown'}
+    ];
+    function lockGreenCollection(){
+      const grid=document.getElementById('productGrid');
+      if(!grid)return;
+      const cards=[...grid.children];
+      cards.slice(4).forEach(card=>card.remove());
+      [...grid.children].forEach((card,i)=>{
+        const p=greenProducts[i];if(!p)return;
+        const img=card.querySelector('.product-image');if(img)img.src=p.src;
+        const title=card.querySelector('h2,h3,.product-name');if(title)title.textContent=p.name;
+      });
+    }
+    lockGreenCollection();
+    requestAnimationFrame(lockGreenCollection);
+    setTimeout(lockGreenCollection,100);
+    setTimeout(lockGreenCollection,500);
+    const grid=document.getElementById('productGrid');
+    if(grid){
+      new MutationObserver(lockGreenCollection).observe(grid,{childList:true});
+      grid.addEventListener('click',e=>{
+        const button=e.target.closest('.concept-button');
+        if(!button)return;
+        const card=button.closest('.product-card');
+        const index=Number(card?.dataset.product);
+        const p=greenProducts[index];
+        if(!p)return;
+        const modalImg=document.getElementById('conceptImage');
+        const modalTitle=document.getElementById('conceptTitle');
+        if(modalImg)modalImg.src=p.src;
+        if(modalTitle)modalTitle.textContent=p.name;
+      });
+    }
+    const lang=document.getElementById('languageSelect');
+    if(lang)lang.addEventListener('change',()=>setTimeout(lockGreenCollection,0));
+  })();
+  </script>
 </body>
 </html>
