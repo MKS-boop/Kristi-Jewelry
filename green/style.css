@@ -47,15 +47,24 @@ h1 { margin:0 0 16px; font-size:clamp(2.1rem,4vw,3.4rem); }
 .about-wrap { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(0,1.35fr); gap:clamp(44px,7vw,96px); align-items:start; }
 .about-symbol-wrap { position:sticky; top:40px; }
 .about-symbol { display:block; width:min(100%,470px); aspect-ratio:1/1; object-fit:cover; margin:0 auto; border:1px solid rgba(218,167,77,.24); box-shadow:0 30px 80px rgba(0,0,0,.28); }
-.about-content { max-width:760px; font-family:'Noto Serif Armenian','Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; }
+.about-content { max-width:760px; font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; }
 .about-section .eyebrow { color:#d8a44a; font-family:Georgia,'Times New Roman',serif; letter-spacing:.18em; }
-.about-section h1,.about-section h2 { color:#f0c66e; font-family:'Noto Serif Armenian','Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-weight:500; letter-spacing:.005em; }
+.about-section h1,.about-section h2 { color:#f0c66e; font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-weight:500; letter-spacing:.005em; }
 .about-section h1 { margin-bottom:28px; line-height:1.32; }
 .about-section h2 { margin:0 0 18px; font-size:clamp(1.6rem,3vw,2.35rem); line-height:1.35; }
-.about-content p { margin:0 0 20px; color:#e4ece8; font-family:'Noto Serif Armenian','Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:1.04rem; line-height:1.78; font-weight:400; }
-.about-lead { font-family:'Noto Serif Armenian','Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:clamp(1.28rem,2vw,1.68rem)!important; line-height:1.62!important; color:#f3dfb7!important; font-weight:500; }
-.about-signature { margin-top:34px!important; color:#e6b04c!important; font-family:'Noto Serif Armenian','Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:1.55rem!important; line-height:1.45!important; font-style:italic; font-weight:500; letter-spacing:.015em; }
+.about-content p { margin:0 0 20px; color:#e4ece8; font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:1.04rem; line-height:1.78; font-weight:400; }
+.about-lead { font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:clamp(1.28rem,2vw,1.68rem)!important; line-height:1.62!important; color:#f3dfb7!important; font-weight:500; }
+.about-signature { margin-top:34px!important; color:#e6b04c!important; font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:1.55rem!important; line-height:1.45!important; font-style:italic; font-weight:500; letter-spacing:.015em; }
 .about-divider { width:100%; height:1px; margin:42px 0 34px; background:linear-gradient(90deg,rgba(218,167,77,.75),rgba(218,167,77,.05)); }
+
+html[lang="hy"] .about-content,html[lang="hy"] .about-section h1,html[lang="hy"] .about-section h2,html[lang="hy"] .about-lead,html[lang="hy"] .about-signature { font-family:'Sylfaen','DejaVu Serif','Times New Roman',serif; }
+html[lang="az"] .about-content,html[lang="az"] .about-section h1,html[lang="az"] .about-section h2 { font-family:Georgia,'Times New Roman',serif; }
+html[lang="ru"] .about-content,html[lang="ru"] .about-section h1,html[lang="ru"] .about-section h2 { font-family:Georgia,'Times New Roman','DejaVu Serif',serif; }
+html[lang="de"] .about-content,html[lang="de"] .about-section h1,html[lang="de"] .about-section h2,html[lang="es"] .about-content,html[lang="es"] .about-section h1,html[lang="es"] .about-section h2,html[lang="tr"] .about-content,html[lang="tr"] .about-section h1,html[lang="tr"] .about-section h2,html[lang="en"] .about-content,html[lang="en"] .about-section h1,html[lang="en"] .about-section h2 { font-family:Georgia,'Times New Roman',serif; }
+html[lang="ar"] .about-content,html[lang="ar"] .about-section h1,html[lang="ar"] .about-section h2,html[lang="fa"] .about-content,html[lang="fa"] .about-section h1,html[lang="fa"] .about-section h2 { font-family:Tahoma,'Segoe UI',Arial,sans-serif; }
+html[lang="hi"] .about-content,html[lang="hi"] .about-section h1,html[lang="hi"] .about-section h2 { font-family:'Nirmala UI','Mangal','Segoe UI',Arial,sans-serif; }
+html[lang="zh"] .about-content,html[lang="zh"] .about-section h1,html[lang="zh"] .about-section h2 { font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Arial,sans-serif; }
+
 .contact-section { background:#06382b; color:#edf4f0; }
 .contact-section h1,.contact-section .eyebrow { color:#e2ad4b; }
 .site-footer { border-top:1px solid #80672e; padding:28px 0; background:#03271e; color:#d9bd8e; font-size:.9rem; }
