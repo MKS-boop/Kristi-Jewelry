@@ -1,9 +1,8 @@
-document.write('<script src="/script-base.js?v=20260817-twelve"><\/script>');
+document.write('<script src="/script-base.js?v=20260817-thirteen"><\/script>');
 
 (function(){
   if(!window.location.pathname.includes('/green/')) return;
 
-  // Approved Green row: preserve original names and verified image files.
   const greenPieces=[
     {id:'green-ring',src:'E457D36E-5F1A-4B9F-81D8-C728FC636D9C.png?v=green-audit-1',name:'Orbit Ring'},
     {id:'green-necklace',src:'7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png?v=green-audit-1',name:'Aurora Drop Necklace'},
@@ -12,8 +11,6 @@ document.write('<script src="/script-base.js?v=20260817-twelve"><\/script>');
     {id:'green-bracelet',src:'19CE06DF-C75C-4676-9477-ADB000875EB6.png?v=bracelet-verified-final-20260817',name:'Infinity Bracelet'}
   ];
 
-  // Approved Future Concepts row: Chip → DNA bracelet → Humanoid → DNA pendant → Chip.
-  // The visual subjects in the two DNA source files were audited against the live screenshot.
   const conceptPieces=[
     {id:'chip-core',src:'product-07.png?v=concept-audit-1',name:'Chip Core Necklace'},
     {id:'dna-bracelet',src:'1D449C53-DEDC-4DEA-8242-B01BFD074D65.png?v=concept-audit-1',name:'DNA Helix Bracelet'},
@@ -22,14 +19,40 @@ document.write('<script src="/script-base.js?v=20260817-twelve"><\/script>');
     {id:'chip-brooch',src:'product-08.png?v=concept-audit-1',name:'Chip Signature Brooch'}
   ];
 
+  function installBadgeStyle(){
+    if(document.getElementById('conceptPreviewBadgeStyle')) return;
+    const style=document.createElement('style');
+    style.id='conceptPreviewBadgeStyle';
+    style.textContent=`
+      .product-image-wrap{position:relative;overflow:hidden}
+      .concept-preview-badge{
+        position:absolute;left:10px;top:10px;z-index:5;
+        display:inline-flex;align-items:center;justify-content:center;
+        min-width:112px;height:28px;padding:0 11px;box-sizing:border-box;
+        background:#11100d;color:#d7ad5b;border:1px solid rgba(215,173,91,.78);
+        font:600 10px/1 Arial,sans-serif;letter-spacing:1.2px;text-transform:uppercase;
+        box-shadow:0 0 0 4px #11100d;
+        white-space:nowrap;pointer-events:none;
+      }
+      @media(max-width:760px){.concept-preview-badge{left:9px;top:9px;min-width:108px;height:27px;font-size:9.5px}}
+    `;
+    document.head.appendChild(style);
+  }
+
   function card(piece){
     const el=document.createElement('article');
     el.className='product-card';el.dataset.pieceId=piece.id;
-    el.innerHTML='<div class="product-image-wrap"><img class="product-image" src="'+piece.src+'" alt="'+piece.name+'"></div><div class="product-card-body"><h2 class="product-name">'+piece.name+'</h2><p class="product-status">Concept design · Not for sale</p><button class="concept-button" type="button" data-piece-id="'+piece.id+'">View Concept</button></div>';
+    el.innerHTML='<div class="product-image-wrap"><img class="product-image" src="'+piece.src+'" alt="'+piece.name+'"><span class="concept-preview-badge">Concept Preview</span></div><div class="product-card-body"><h2 class="product-name">'+piece.name+'</h2><p class="product-status">Concept design · Not for sale</p><button class="concept-button" type="button" data-piece-id="'+piece.id+'">View Concept</button></div>';
     return el;
   }
-  function styleGrid(grid){grid.style.gridTemplateColumns=window.innerWidth<=760?'1fr':'repeat(5,minmax(0,1fr))';grid.style.gap=window.innerWidth<=760?'18px':'14px';}
+
+  function styleGrid(grid){
+    grid.style.gridTemplateColumns=window.innerWidth<=760?'1fr':'repeat(5,minmax(0,1fr))';
+    grid.style.gap=window.innerWidth<=760?'18px':'14px';
+  }
+
   function render(){
+    installBadgeStyle();
     const green=document.getElementById('productGrid');if(!green)return;
     let heading=document.querySelector('.concept-second-heading');
     let concept=document.getElementById('conceptProductGrid');
@@ -39,8 +62,11 @@ document.write('<script src="/script-base.js?v=20260817-twelve"><\/script>');
     concept.replaceChildren(...conceptPieces.map(card));
     styleGrid(green);styleGrid(concept);
   }
+
   function schedule(){[40,150,400,900,1700].forEach(ms=>setTimeout(render,ms));}
-  document.addEventListener('DOMContentLoaded',schedule,{once:true});if(document.readyState!=='loading')schedule();window.addEventListener('load',schedule,{once:true});
+  document.addEventListener('DOMContentLoaded',schedule,{once:true});
+  if(document.readyState!=='loading')schedule();
+  window.addEventListener('load',schedule,{once:true});
   window.addEventListener('resize',()=>{const a=document.getElementById('productGrid'),b=document.getElementById('conceptProductGrid');if(a)styleGrid(a);if(b)styleGrid(b);},{passive:true});
   document.addEventListener('change',e=>{if(e.target&&e.target.id==='languageSelect')setTimeout(render,0);});
   document.addEventListener('click',e=>{
