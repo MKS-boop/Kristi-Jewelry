@@ -58,20 +58,25 @@ document.write('<script src="/script-base.js?v=20260817-six"><\/script>');
     const frame = document.querySelector('.hero-frame');
     if(!frame || frame.querySelector('.green-hero-cta')) return;
 
+    /* Disable the older pseudo-element CTA zones that were sitting over the tagline. */
+    const fixStyle = document.createElement('style');
+    fixStyle.textContent = '.hotspot-collections::after,.hotspot-shop::after{content:none!important;display:none!important;pointer-events:none!important}';
+    document.head.appendChild(fixStyle);
+
     const buttons = [
-      {label:'Discover Collection', target:'productGrid', left:'9.7%', top:'81.8%', width:'20.7%', height:'12.5%'},
-      {label:'Shop Now', target:'shop', left:'31.6%', top:'81.8%', width:'15.8%', height:'12.5%'}
+      {label:'Discover Collection', target:'productGrid', left:'7.8%', top:'64.0%', width:'20.0%', height:'9.5%'},
+      {label:'Shop Now', target:'shop', left:'29.0%', top:'64.0%', width:'15.5%', height:'9.5%'}
     ];
 
     buttons.forEach(spec => {
       const link = document.createElement('a');
       link.className = 'green-hero-cta';
-      link.href = '#';
+      link.href = spec.target === 'productGrid' ? '#productGrid' : '#shop';
       link.setAttribute('aria-label', spec.label);
       Object.assign(link.style, {
         position:'absolute', left:spec.left, top:spec.top, width:spec.width, height:spec.height,
-        zIndex:'47', display:'block', background:'transparent', border:'0', cursor:'pointer',
-        textDecoration:'none', WebkitTapHighlightColor:'transparent'
+        zIndex:'70', display:'block', background:'transparent', border:'0', cursor:'pointer',
+        textDecoration:'none', WebkitTapHighlightColor:'transparent', pointerEvents:'auto'
       });
       link.addEventListener('click', event => {
         event.preventDefault();
