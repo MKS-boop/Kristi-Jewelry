@@ -53,8 +53,61 @@ document.write('<script src="/script-base.js?v=20260817-five"><\/script>');
     setTimeout(applyFivePieceLayout, 240);
   }
 
-  document.addEventListener('DOMContentLoaded', scheduleLayout, {once:true});
-  if(document.readyState !== 'loading') scheduleLayout();
+  function installHeroCTAButtons(){
+    const frame = document.querySelector('.hero-frame');
+    if(!frame || frame.querySelector('.green-hero-cta')) return;
+
+    const buttons = [
+      {label:'Discover Collection', target:'productGrid', left:'9.7%', top:'81.8%', width:'20.7%', height:'12.5%'},
+      {label:'Shop Now', target:'shop', left:'31.6%', top:'81.8%', width:'15.8%', height:'12.5%'}
+    ];
+
+    buttons.forEach(spec => {
+      const link = document.createElement('a');
+      link.className = 'green-hero-cta';
+      link.href = '#';
+      link.setAttribute('aria-label', spec.label);
+      Object.assign(link.style, {
+        position:'absolute',
+        left:spec.left,
+        top:spec.top,
+        width:spec.width,
+        height:spec.height,
+        zIndex:'47',
+        display:'block',
+        background:'transparent',
+        border:'0',
+        cursor:'pointer',
+        textDecoration:'none',
+        WebkitTapHighlightColor:'transparent'
+      });
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const target = document.getElementById(spec.target);
+        if(!target) return;
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        const hash = spec.target === 'productGrid' ? '#productGrid' : '#shop';
+        history.replaceState(null, '', window.location.pathname + window.location.search + hash);
+      });
+      link.addEventListener('focus', () => {
+        link.style.outline = '2px solid rgba(240,198,110,.95)';
+        link.style.outlineOffset = '2px';
+      });
+      link.addEventListener('blur', () => {
+        link.style.outline = 'none';
+      });
+      frame.appendChild(link);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    scheduleLayout();
+    installHeroCTAButtons();
+  }, {once:true});
+  if(document.readyState !== 'loading'){
+    scheduleLayout();
+    installHeroCTAButtons();
+  }
 
   window.addEventListener('resize', () => {
     const grid = document.getElementById('productGrid');
