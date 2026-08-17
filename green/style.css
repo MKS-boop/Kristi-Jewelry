@@ -9,6 +9,10 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .hero { width:100%; background:#073c2e; overflow:hidden; }
 .hero-frame { position:relative; width:100%; margin:0; overflow:hidden; }
 .hero-art { display:block; width:100%; height:auto; max-width:100%; object-fit:contain; }
+.hotspot-collections::after,.hotspot-shop::after{content:"";position:absolute;display:block;pointer-events:auto;background:transparent}
+.hotspot-collections::after{left:-127%;top:1015%;width:160%;height:135%}
+.hotspot-shop::after{left:227%;top:1015%;width:227%;height:135%}
+body.hotspot-debug .hotspot-collections::after,body.hotspot-debug .hotspot-shop::after{outline:1px solid #f0c66e;background:rgba(240,198,110,.16)}
 .language-bar { position:absolute; top:96px; right:24px; z-index:50; width:122px; }
 .language-bar-inner { display:flex; align-items:center; justify-content:center; height:30px; padding:2px 5px; border:1px solid rgba(224,177,83,.42); border-radius:15px; background:rgba(3,43,32,.72); backdrop-filter:blur(8px); box-shadow:0 4px 14px rgba(0,0,0,.12); }
 .language-label { display:none; }
@@ -58,7 +62,6 @@ h1 { margin:0 0 16px; font-size:clamp(2.1rem,4vw,3.4rem); }
 .about-lead { font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:clamp(1.28rem,2vw,1.68rem)!important; line-height:1.62!important; color:#f3dfb7!important; font-weight:500; }
 .about-signature { margin-top:34px!important; color:#e6b04c!important; font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:1.55rem!important; line-height:1.45!important; font-style:italic; font-weight:500; letter-spacing:.015em; }
 .about-divider { width:100%; height:1px; margin:42px 0 34px; background:linear-gradient(90deg,rgba(218,167,77,.75),rgba(218,167,77,.05)); }
-
 html[lang="hy"] .about-content,html[lang="hy"] .about-section h1,html[lang="hy"] .about-section h2,html[lang="hy"] .about-lead,html[lang="hy"] .about-signature { font-family:'Sylfaen','DejaVu Serif','Times New Roman',serif; }
 html[lang="az"] .about-content,html[lang="az"] .about-section h1,html[lang="az"] .about-section h2 { font-family:Georgia,'Times New Roman',serif; }
 html[lang="ru"] .about-content,html[lang="ru"] .about-section h1,html[lang="ru"] .about-section h2 { font-family:Georgia,'Times New Roman','DejaVu Serif',serif; }
@@ -66,7 +69,6 @@ html[lang="de"] .about-content,html[lang="de"] .about-section h1,html[lang="de"]
 html[lang="ar"] .about-content,html[lang="ar"] .about-section h1,html[lang="ar"] .about-section h2,html[lang="fa"] .about-content,html[lang="fa"] .about-section h1,html[lang="fa"] .about-section h2 { font-family:Tahoma,'Segoe UI',Arial,sans-serif; }
 html[lang="hi"] .about-content,html[lang="hi"] .about-section h1,html[lang="hi"] .about-section h2 { font-family:'Nirmala UI','Mangal','Segoe UI',Arial,sans-serif; }
 html[lang="zh"] .about-content,html[lang="zh"] .about-section h1,html[lang="zh"] .about-section h2 { font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Arial,sans-serif; }
-
 .contact-section { background:#06382b; color:#edf4f0; }
 .contact-section h1,.contact-section .eyebrow { color:#e2ad4b; }
 .site-footer { border-top:1px solid #80672e; padding:28px 0; background:#03271e; color:#d9bd8e; font-size:.9rem; }
