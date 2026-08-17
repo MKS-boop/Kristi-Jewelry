@@ -21,6 +21,12 @@ document.write('<script src="/script-base.js?v=20260817-five"><\/script>');
     {product:3, src:'19CE06DF-C75C-4676-9477-ADB000875EB6.png?v=bracelet1'}
   ];
 
+  function setGridColumns(grid){
+    const w = window.innerWidth;
+    grid.style.gridTemplateColumns = w <= 760 ? '1fr' : (w <= 1180 ? 'repeat(3,minmax(0,1fr))' : 'repeat(5,minmax(0,1fr))');
+    grid.style.gap = w <= 760 ? '18px' : '18px';
+  }
+
   function applyFivePieceLayout(){
     const grid = document.getElementById('productGrid');
     if(!grid) return;
@@ -31,6 +37,7 @@ document.write('<script src="/script-base.js?v=20260817-five"><\/script>');
     if(ordered.length !== 5) return;
 
     ordered.forEach(card => grid.appendChild(card));
+    setGridColumns(grid);
 
     setTimeout(() => {
       pieces.forEach(piece => {
@@ -48,6 +55,11 @@ document.write('<script src="/script-base.js?v=20260817-five"><\/script>');
 
   document.addEventListener('DOMContentLoaded', scheduleLayout, {once:true});
   if(document.readyState !== 'loading') scheduleLayout();
+
+  window.addEventListener('resize', () => {
+    const grid = document.getElementById('productGrid');
+    if(grid) setGridColumns(grid);
+  }, {passive:true});
 
   document.addEventListener('change', e => {
     if(e.target && e.target.id === 'languageSelect') scheduleLayout();
