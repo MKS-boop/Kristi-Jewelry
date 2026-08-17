@@ -53,6 +53,8 @@ h1 { margin:0 0 16px; font-size:clamp(2.1rem,4vw,3.4rem); }
 .about-section h1 { margin-bottom:28px; line-height:1.32; }
 .about-section h2 { margin:0 0 18px; font-size:clamp(1.6rem,3vw,2.35rem); line-height:1.35; }
 .about-content p { margin:0 0 20px; color:#e4ece8; font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:1.04rem; line-height:1.78; font-weight:400; }
+.about-content #aboutP4 { font-weight:400 !important; }
+.about-content #aboutP4 strong,.about-content p:has(#aboutP4) strong { font-weight:400 !important; }
 .about-lead { font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:clamp(1.28rem,2vw,1.68rem)!important; line-height:1.62!important; color:#f3dfb7!important; font-weight:500; }
 .about-signature { margin-top:34px!important; color:#e6b04c!important; font-family:'Sylfaen','DejaVu Serif',Georgia,'Times New Roman',serif; font-size:1.55rem!important; line-height:1.45!important; font-style:italic; font-weight:500; letter-spacing:.015em; }
 .about-divider { width:100%; height:1px; margin:42px 0 34px; background:linear-gradient(90deg,rgba(218,167,77,.75),rgba(218,167,77,.05)); }
