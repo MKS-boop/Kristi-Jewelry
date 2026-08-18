@@ -6,13 +6,14 @@ const form=document.getElementById('jewelryForm');
 const photoInput=document.getElementById('photoInput');
 const photoPreview=document.getElementById('photoPreview');
 const formMessage=document.getElementById('formMessage');
+let selectedPhotos=[];
 
 function persist(){localStorage.setItem(STORE_KEY,JSON.stringify(state.submissions));}
 function go(view){tabs.forEach(t=>t.classList.toggle('is-active',t.dataset.view===view));views.forEach(v=>v.classList.toggle('is-active',v.id===view));window.scrollTo({top:0,behavior:'smooth'});}
 tabs.forEach(t=>t.addEventListener('click',()=>go(t.dataset.view)));
 document.addEventListener('click',e=>{const target=e.target.closest('[data-go]');if(target)go(target.dataset.go);});
 
-function escapeHTML(value=''){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function escapeHTML(value=''){return String(value).replace(/[&<>'\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c]));}
 function counts(){
   document.getElementById('draftCount').textContent=state.submissions.filter(x=>x.status==='Draft').length;
   document.getElementById('pendingCount').textContent=state.submissions.filter(x=>x.status==='Pending Review').length;
@@ -28,28 +29,39 @@ function render(){
   else review.innerHTML=pending.map(x=>`<article class="review-card" data-id="${x.id}"><div><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.brand)} · ${escapeHTML(x.country)} · ${escapeHTML(x.availability)}<br>Jeweler base price: $${Number(x.basePrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</p></div><div class="review-actions"><input class="retail-input" type="number" min="0" step="0.01" placeholder="Retail USD" aria-label="Retail price"><button class="button secondary" data-action="reject">Return</button><button class="button" data-action="approve">Approve</button></div></article>`).join('');
 }
 
-function validatePhotos(){
-  const files=[...photoInput.files];
+function renderPhotos(){
   photoPreview.innerHTML='';
-  files.slice(0,8).forEach(file=>{
+  selectedPhotos.forEach((file,index)=>{
     const box=document.createElement('div');box.className='photo-thumb';
-    const img=document.createElement('img');img.alt='Jewelry preview';img.src=URL.createObjectURL(file);box.appendChild(img);photoPreview.appendChild(box);
+    const img=document.createElement('img');img.alt='Jewelry preview';img.src=URL.createObjectURL(file);box.appendChild(img);
+    const remove=document.createElement('button');remove.type='button';remove.className='photo-remove';remove.textContent='×';remove.title='Remove photo';remove.addEventListener('click',()=>{selectedPhotos.splice(index,1);renderPhotos();validatePhotos();});box.appendChild(remove);
+    photoPreview.appendChild(box);
   });
-  if(files.length && (files.length<3||files.length>8)) formMessage.textContent='Please select between 3 and 8 photos.';
-  else formMessage.textContent='';
-  return files.length>=3&&files.length<=8;
 }
-photoInput.addEventListener('change',validatePhotos);
+function validatePhotos(){
+  const count=selectedPhotos.length;
+  if(count && count<3) formMessage.textContent=`${count} photo${count===1?'':'s'} selected — add ${3-count} more.`;
+  else if(count>8) formMessage.textContent='Maximum 8 photos are allowed.';
+  else formMessage.textContent='';
+  return count>=3&&count<=8;
+}
+photoInput.addEventListener('change',()=>{
+  const incoming=[...photoInput.files];
+  const room=8-selectedPhotos.length;
+  if(room>0) selectedPhotos.push(...incoming.slice(0,room));
+  photoInput.value='';
+  renderPhotos();validatePhotos();
+});
 
 function dataFromForm(status){
   const data=new FormData(form);
-  return {id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name:data.get('name'),brand:data.get('brand'),country:data.get('country'),material:data.get('material'),weight:data.get('weight'),dimensions:data.get('dimensions'),quantity:data.get('quantity'),availability:data.get('availability'),basePrice:data.get('basePrice'),description:data.get('description'),photoNames:[...photoInput.files].map(f=>f.name),status,createdAt:new Date().toISOString()};
+  return {id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name:data.get('name'),brand:data.get('brand'),country:data.get('country'),material:data.get('material'),weight:data.get('weight'),dimensions:data.get('dimensions'),quantity:data.get('quantity'),availability:data.get('availability'),basePrice:data.get('basePrice'),description:data.get('description'),photoNames:selectedPhotos.map(f=>f.name),status,createdAt:new Date().toISOString()};
 }
 function save(status){
   if(!form.reportValidity()) return;
   if(!validatePhotos()){formMessage.textContent='3 to 8 photos are required for a submission.';return;}
   state.submissions.push(dataFromForm(status));persist();render();
-  form.reset();photoPreview.innerHTML='';
+  form.reset();selectedPhotos=[];photoPreview.innerHTML='';
   formMessage.textContent=status==='Draft'?'Draft saved in this browser.':'Submitted to Pending Review in this v0.1 prototype.';
   setTimeout(()=>go('dashboard'),650);
 }
