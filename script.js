@@ -26,9 +26,35 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
     style.textContent=`
       .product-image-wrap{position:relative;overflow:hidden}
       .concept-preview-badge{position:absolute;left:11px;top:11px;z-index:5;display:inline-flex;align-items:center;justify-content:center;min-width:78px;height:20px;padding:0 7px;box-sizing:border-box;background:#11100d;color:#d7ad5b;border:1px solid rgba(215,173,91,.72);font:600 7px/1 Arial,sans-serif;letter-spacing:.8px;text-transform:uppercase;box-shadow:0 0 0 2px #11100d;white-space:nowrap;pointer-events:none}
+      .hotspot-collections::after,.hotspot-shop::after{display:none!important;pointer-events:none!important}
+      .hero-link{pointer-events:auto!important;z-index:90!important}
       @media(max-width:760px){.concept-preview-badge{left:10px;top:10px;min-width:76px;height:20px;font-size:7px}}
     `;
     document.head.appendChild(style);
+  }
+
+  function activateHeroLinks(){
+    const targets={
+      'hero-link-shop':'shop',
+      'hero-link-collections':'productGrid',
+      'hero-link-about':'about',
+      'hero-link-contact':'contact',
+      'hero-link-shopnow':'shop',
+      'hero-link-browse':'productGrid',
+      'hero-link-cart':'shop'
+    };
+    Object.entries(targets).forEach(([cls,id])=>{
+      const link=document.querySelector('.'+cls);
+      if(!link)return;
+      link.style.pointerEvents='auto';
+      link.style.zIndex='90';
+      link.addEventListener('click',function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        const target=document.getElementById(id);
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
   }
 
   function conceptCard(piece){
@@ -42,6 +68,7 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
 
   function render(){
     installStyle();
+    activateHeroLinks();
     const green=document.getElementById('productGrid');if(!green)return;
     let heading=document.querySelector('.concept-second-heading');
     let concept=document.getElementById('conceptProductGrid');
