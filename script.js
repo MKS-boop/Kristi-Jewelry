@@ -8,7 +8,7 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
     {id:'green-necklace',src:'7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png?v=green-audit-1',name:'Aurora Drop Necklace'},
     {id:'green-tiara',src:'61AC2F61-DDC9-4E44-AB54-A99A268A681D.png?v=green-audit-1',name:'Kristi Tiara'},
     {id:'green-earrings',src:'4907FEF0-19B9-4690-8B51-5B2FA320AD58.png?v=green-audit-1',name:'Lumina Earrings'},
-    {id:'green-bracelet',src:'Kristi%20bracelet.jpeg?v=20260818-new-bracelet',name:'Infinity Bracelet'}
+    {id:'green-bracelet',src:'Kristi%20bracelet.jpeg?v=20260818-bracelet-clean',name:'Infinity Bracelet'}
   ];
 
   const conceptPieces=[
@@ -25,10 +25,9 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
     style.id='kristiPublicCatalogStyle';
     style.textContent=`
       .product-image-wrap{position:relative;overflow:hidden}
-      .concept-preview-badge{position:absolute;left:11px;top:11px;z-index:5;display:inline-flex;align-items:center;justify-content:center;min-width:78px;height:20px;padding:0 7px;box-sizing:border-box;background:#11100d;color:#d7ad5b;border:1px solid rgba(215,173,91,.72);font:600 7px/1 Arial,sans-serif;letter-spacing:.8px;text-transform:uppercase;box-shadow:0 0 0 2px #11100d;white-space:nowrap;pointer-events:none}
+      .product-image-wrap>.product-image{display:block;width:100%;height:100%;object-fit:cover}
       .hotspot-collections::after,.hotspot-shop::after{display:none!important;pointer-events:none!important}
       .hero-link{pointer-events:auto!important;z-index:90!important}
-      @media(max-width:760px){.concept-preview-badge{left:10px;top:10px;min-width:76px;height:20px;font-size:7px}}
     `;
     document.head.appendChild(style);
   }
@@ -60,7 +59,7 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
   function conceptCard(piece){
     const el=document.createElement('article');
     el.className='product-card';el.dataset.pieceId=piece.id;
-    el.innerHTML='<div class="product-image-wrap"><img class="product-image" src="'+piece.src+'" alt="'+piece.name+'"><span class="concept-preview-badge">Concept Preview</span></div><div class="product-card-body"><h2 class="product-name">'+piece.name+'</h2><p class="product-status">Concept design · Not for sale</p><button class="concept-button" type="button" data-piece-id="'+piece.id+'">View Concept</button></div>';
+    el.innerHTML='<div class="product-image-wrap"><img class="product-image" src="'+piece.src+'" alt="'+piece.name+'"></div><div class="product-card-body"><h2 class="product-name">'+piece.name+'</h2><p class="product-status">Concept design · Not for sale</p><button class="concept-button" type="button" data-piece-id="'+piece.id+'">View Concept</button></div>';
     return el;
   }
 
