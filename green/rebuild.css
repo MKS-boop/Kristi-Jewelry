@@ -1,0 +1,42 @@
+/* Green rebuild: single interaction layer. */
+.hotspot-collections::after,.hotspot-shop::after{display:none!important;pointer-events:none!important;content:none!important}
+.hero-frame::before,.hero-frame::after{pointer-events:none!important}
+.hero-frame{position:relative}
+.hero-art{pointer-events:none;user-select:none}
+.hero-control{position:absolute;z-index:120;display:block;background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;padding:0;margin:0;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}
+.hero-control:hover,.hero-control:focus,.hero-control:focus-visible,.hero-control:active{background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important}
+.hero-home{left:12.3%;top:4.65%;width:6.0%;height:4.5%}
+.hero-shop{left:20.1%;top:4.65%;width:5.8%;height:4.5%}
+.hero-collections{left:28.2%;top:4.65%;width:10.8%;height:4.5%}
+.hero-about{left:41.3%;top:4.65%;width:6.1%;height:4.5%}
+.hero-contact{left:49.3%;top:4.65%;width:7.4%;height:4.5%}
+.hero-search{left:76.9%;top:4.55%;width:3.0%;height:4.9%}
+.hero-account{left:82.0%;top:4.55%;width:3.0%;height:4.9%}
+.hero-cart{left:87.2%;top:4.55%;width:3.2%;height:4.9%}
+.hero-menu{left:92.6%;top:4.55%;width:3.3%;height:4.9%}
+.hero-browse{left:10.6%;top:66.6%;width:19.2%;height:7.1%}
+.hero-shopnow{left:32.2%;top:66.6%;width:15.4%;height:7.1%}
+.hero-panel{position:absolute;z-index:200;display:none;background:rgba(3,43,32,.97);border:1px solid rgba(224,177,83,.55);box-shadow:0 16px 36px rgba(0,0,0,.3);color:#f1d28e}
+.hero-panel.is-open{display:block}
+.search-panel{right:12.5%;top:11.5%;width:min(330px,72vw);padding:12px}
+.search-input{width:100%;height:38px;padding:0 11px;border:1px solid rgba(224,177,83,.55);background:#082f26;color:#fff;outline:0}
+.menu-panel{right:2.5%;top:11.5%;width:185px;padding:8px}
+.menu-panel a{display:block;padding:10px 12px;color:#f1d28e;border-bottom:1px solid rgba(224,177,83,.18)}
+.menu-panel a:last-child{border-bottom:0}
+.menu-panel a:hover{background:rgba(224,177,83,.1)}
+.product-grid{align-items:stretch}
+.product-card{display:flex;flex-direction:column;height:100%}
+.product-image-wrap{position:relative;overflow:hidden;aspect-ratio:1/1;background:#073c2e}
+.product-image-wrap>.product-image{display:block;width:100%;height:100%;margin:0;object-fit:cover}
+.product-card-body{display:flex;flex:1;flex-direction:column}
+.product-card-body .concept-button{margin-top:auto;align-self:flex-start}
+.product-card[data-piece-id="green-bracelet"] .product-image{object-fit:cover;object-position:50% 27%;transform:scale(1.34);transform-origin:50% 27%}
+.concept-second-heading{margin-top:54px}
+.concept-modal.is-open{display:grid}
+.published-static-thumbs button{display:block;width:72px;height:72px;padding:0;border:1px solid rgba(215,173,91,.35);border-radius:8px;overflow:hidden;background:transparent;cursor:pointer}
+.published-static-thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:760px){
+  .hero-home{left:12.1%}.hero-shop{left:19.9%}.hero-collections{left:28.0%}.hero-about{left:41.1%}.hero-contact{left:49.1%}
+  .hero-search{left:76.7%}.hero-account{left:81.8%}.hero-cart{left:87.0%}.hero-menu{left:92.4%}
+  .hero-browse{left:10.4%;top:66.2%;width:19.6%;height:7.5%}.hero-shopnow{left:32.0%;top:66.2%;width:15.8%;height:7.5%}
+}
