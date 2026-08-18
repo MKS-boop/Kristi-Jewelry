@@ -8,7 +8,7 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
     {id:'green-necklace',src:'7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png?v=green-audit-1',name:'Aurora Drop Necklace'},
     {id:'green-tiara',src:'61AC2F61-DDC9-4E44-AB54-A99A268A681D.png?v=green-audit-1',name:'Kristi Tiara'},
     {id:'green-earrings',src:'4907FEF0-19B9-4690-8B51-5B2FA320AD58.png?v=green-audit-1',name:'Lumina Earrings'},
-    {id:'green-bracelet',src:'Kristi%20bracelet.jpeg?v=20260818-bracelet-clean',name:'Infinity Bracelet'}
+    {id:'green-bracelet',src:'Kristi%20bracelet.jpeg?v=20260818-bracelet-crop2',name:'Infinity Bracelet'}
   ];
 
   const conceptPieces=[
@@ -24,8 +24,9 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
     const style=document.createElement('style');
     style.id='kristiPublicCatalogStyle';
     style.textContent=`
-      .product-image-wrap{position:relative;overflow:hidden}
-      .product-image-wrap>.product-image{display:block;width:100%;height:100%;object-fit:cover}
+      .product-image-wrap{position:relative;overflow:hidden;aspect-ratio:1/1;background:#073c2e}
+      .product-image-wrap>.product-image{display:block;width:100%;height:100%;margin:0;object-fit:cover}
+      .product-card[data-piece-id="green-bracelet"] .product-image{width:100%;height:100%;object-fit:cover;object-position:50% 31%;transform:scale(1.20);transform-origin:50% 31%}
       .hotspot-collections::after,.hotspot-shop::after{display:none!important;pointer-events:none!important}
       .hero-link{pointer-events:auto!important;z-index:90!important}
     `;
@@ -33,56 +34,16 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
   }
 
   function activateHeroLinks(){
-    const targets={
-      'hero-link-shop':'shop',
-      'hero-link-collections':'productGrid',
-      'hero-link-about':'about',
-      'hero-link-contact':'contact',
-      'hero-link-shopnow':'shop',
-      'hero-link-browse':'productGrid',
-      'hero-link-cart':'shop'
-    };
-    Object.entries(targets).forEach(([cls,id])=>{
-      const link=document.querySelector('.'+cls);
-      if(!link)return;
-      link.style.pointerEvents='auto';
-      link.style.zIndex='90';
-      link.addEventListener('click',function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        const target=document.getElementById(id);
-        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    });
+    const targets={'hero-link-shop':'shop','hero-link-collections':'productGrid','hero-link-about':'about','hero-link-contact':'contact','hero-link-shopnow':'shop','hero-link-browse':'productGrid','hero-link-cart':'shop'};
+    Object.entries(targets).forEach(([cls,id])=>{const link=document.querySelector('.'+cls);if(!link)return;link.style.pointerEvents='auto';link.style.zIndex='90';link.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();const target=document.getElementById(id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});});});
   }
 
-  function conceptCard(piece){
-    const el=document.createElement('article');
-    el.className='product-card';el.dataset.pieceId=piece.id;
-    el.innerHTML='<div class="product-image-wrap"><img class="product-image" src="'+piece.src+'" alt="'+piece.name+'"></div><div class="product-card-body"><h2 class="product-name">'+piece.name+'</h2><p class="product-status">Concept design · Not for sale</p><button class="concept-button" type="button" data-piece-id="'+piece.id+'">View Concept</button></div>';
-    return el;
-  }
-
+  function conceptCard(piece){const el=document.createElement('article');el.className='product-card';el.dataset.pieceId=piece.id;el.innerHTML='<div class="product-image-wrap"><img class="product-image" src="'+piece.src+'" alt="'+piece.name+'"></div><div class="product-card-body"><h2 class="product-name">'+piece.name+'</h2><p class="product-status">Concept design · Not for sale</p><button class="concept-button" type="button" data-piece-id="'+piece.id+'">View Concept</button></div>';return el;}
   function styleGrid(grid){grid.style.gridTemplateColumns=window.innerWidth<=760?'1fr':'repeat(5,minmax(0,1fr))';grid.style.gap=window.innerWidth<=760?'18px':'14px';}
-
-  function render(){
-    installStyle();
-    activateHeroLinks();
-    const green=document.getElementById('productGrid');if(!green)return;
-    let heading=document.querySelector('.concept-second-heading');
-    let concept=document.getElementById('conceptProductGrid');
-    if(!heading){heading=document.createElement('div');heading.className='section-heading concept-second-heading';heading.innerHTML='<p class="eyebrow">Concept Preview</p><h1>Future Concepts</h1>';green.insertAdjacentElement('afterend',heading);}
-    if(!concept){concept=document.createElement('div');concept.id='conceptProductGrid';concept.className='product-grid';heading.insertAdjacentElement('afterend',concept);}
-    green.replaceChildren(...greenPieces.map(conceptCard));
-    concept.replaceChildren(...conceptPieces.map(conceptCard));
-    styleGrid(green);styleGrid(concept);
-  }
-
+  function render(){installStyle();activateHeroLinks();const green=document.getElementById('productGrid');if(!green)return;let heading=document.querySelector('.concept-second-heading');let concept=document.getElementById('conceptProductGrid');if(!heading){heading=document.createElement('div');heading.className='section-heading concept-second-heading';heading.innerHTML='<p class="eyebrow">Concept Preview</p><h1>Future Concepts</h1>';green.insertAdjacentElement('afterend',heading);}if(!concept){concept=document.createElement('div');concept.id='conceptProductGrid';concept.className='product-grid';heading.insertAdjacentElement('afterend',concept);}green.replaceChildren(...greenPieces.map(conceptCard));concept.replaceChildren(...conceptPieces.map(conceptCard));styleGrid(green);styleGrid(concept);}
   function schedule(){[40,150,400,900,1700].forEach(ms=>setTimeout(render,ms));}
   document.addEventListener('DOMContentLoaded',schedule,{once:true});if(document.readyState!=='loading')schedule();window.addEventListener('load',schedule,{once:true});
   window.addEventListener('resize',()=>{const a=document.getElementById('productGrid'),b=document.getElementById('conceptProductGrid');if(a)styleGrid(a);if(b)styleGrid(b);},{passive:true});
   document.addEventListener('change',e=>{if(e.target&&e.target.id==='languageSelect')setTimeout(render,0);});
-  document.addEventListener('click',e=>{
-    const btn=e.target.closest&&e.target.closest('.concept-button');if(!btn)return;const id=btn.dataset.pieceId;const p=[...greenPieces,...conceptPieces].find(x=>x.id===id);if(!p)return;setTimeout(()=>{const img=document.getElementById('conceptImage');if(img)img.src=p.src;const t=document.getElementById('conceptTitle');if(t)t.textContent=p.name;},0);
-  });
+  document.addEventListener('click',e=>{const btn=e.target.closest&&e.target.closest('.concept-button');if(!btn)return;const id=btn.dataset.pieceId;const p=[...greenPieces,...conceptPieces].find(x=>x.id===id);if(!p)return;setTimeout(()=>{const img=document.getElementById('conceptImage');if(img)img.src=p.src;const t=document.getElementById('conceptTitle');if(t)t.textContent=p.name;},0);});
 })();
