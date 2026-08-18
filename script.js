@@ -8,7 +8,7 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
     {id:'green-necklace',src:'7962FDDD-FF5A-4621-85D1-BAA0AE1BD508.png?v=green-audit-1',name:'Aurora Drop Necklace'},
     {id:'green-tiara',src:'61AC2F61-DDC9-4E44-AB54-A99A268A681D.png?v=green-audit-1',name:'Kristi Tiara'},
     {id:'green-earrings',src:'4907FEF0-19B9-4690-8B51-5B2FA320AD58.png?v=green-audit-1',name:'Lumina Earrings'},
-    {id:'green-bracelet',src:'19CE06DF-C75C-4676-9477-ADB000875EB6.png?v=bracelet-verified-final-20260817',name:'Infinity Bracelet'}
+    {id:'green-bracelet',src:'Kristi%20bracelet.jpeg?v=20260818-new-bracelet',name:'Infinity Bracelet'}
   ];
 
   const conceptPieces=[
