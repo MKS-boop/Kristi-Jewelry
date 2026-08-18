@@ -18,62 +18,32 @@
       <p class="eyebrow">Private partner workspace</p>
       <h1>Submit jewelry for KRISTI review.</h1>
       <p class="lede">Jewelry submitted here remains private until KRISTI reviews the listing, confirms the retail price, and approves publication.</p>
-      <div class="flow" aria-label="Submission workflow">
-        <span>Jeweler Upload</span><b>→</b><span>Pending Review</span><b>→</b><span>Kristi Review</span><b>→</b><span>Published</span>
-      </div>
+      <div class="flow" aria-label="Submission workflow"><span>Jeweler Upload</span><b>→</b><span>Pending Review</span><b>→</b><span>Kristi Review</span><b>→</b><span>Published</span></div>
     </section>
-
-    <nav class="portal-tabs" aria-label="Portal sections">
-      <button class="tab is-active" data-view="dashboard">Dashboard</button>
-      <button class="tab" data-view="add">Add Jewelry</button>
-      <button class="tab" data-view="review">Kristi Review</button>
-    </nav>
-
+    <nav class="portal-tabs" aria-label="Portal sections"><button class="tab is-active" data-view="dashboard">Dashboard</button><button class="tab" data-view="add">Add Jewelry</button><button class="tab" data-view="review">Kristi Review</button></nav>
     <section id="dashboard" class="view is-active">
-      <div class="stats">
-        <article class="stat panel"><span>Drafts</span><strong id="draftCount">0</strong></article>
-        <article class="stat panel"><span>Pending Review</span><strong id="pendingCount">0</strong></article>
-        <article class="stat panel"><span>Published</span><strong>0</strong></article>
-      </div>
-      <div class="panel">
-        <div class="section-title"><div><p class="eyebrow">Your submissions</p><h2>Recent jewelry</h2></div><button class="button" data-go="add">+ Add Jewelry</button></div>
-        <div id="submissionList" class="submission-list"><p class="empty">No submissions yet. Add the first jewelry piece to begin.</p></div>
-      </div>
+      <div class="stats"><article class="stat panel"><span>Drafts</span><strong id="draftCount">0</strong></article><article class="stat panel"><span>Pending Review</span><strong id="pendingCount">0</strong></article><article class="stat panel"><span>Published</span><strong>0</strong></article></div>
+      <div class="panel"><div class="section-title"><div><p class="eyebrow">Your submissions</p><h2>Recent jewelry</h2></div><button class="button" data-go="add">+ Add Jewelry</button></div><div id="submissionList" class="submission-list"><p class="empty">No submissions yet. Add the first jewelry piece to begin.</p></div></div>
     </section>
-
     <section id="add" class="view">
       <form id="jewelryForm" class="panel form-panel">
         <div class="section-title"><div><p class="eyebrow">New submission</p><h2>Add Jewelry</h2></div><span class="status-badge">Draft</span></div>
         <div class="form-grid">
           <label class="full">Jewelry name<input name="name" required maxlength="120" placeholder="e.g. Handcrafted Emerald Ring"></label>
-          <label>Jeweler / brand<input name="brand" required maxlength="120"></label>
-          <label>Country<input name="country" required maxlength="80"></label>
-          <label>Material<input name="material" required placeholder="18K gold, sterling silver…"></label>
-          <label>Weight<input name="weight" placeholder="e.g. 12.4 g"></label>
-          <label>Dimensions / size<input name="dimensions" required placeholder="Ring size, length, width…"></label>
-          <label>Quantity<input name="quantity" type="number" min="0" step="1" required value="1"></label>
-          <label>Availability<select name="availability" required><option>In stock</option><option>Made to order</option><option>Sold</option></select></label>
-          <label>Jeweler base price (USD)<input name="basePrice" type="number" min="0" step="0.01" required placeholder="0.00"></label>
-          <label>KRISTI retail price<input value="Set during KRISTI review" disabled></label>
-          <label class="full">Short description<textarea name="description" required maxlength="700" rows="5" placeholder="Materials, technique, story, notable details…"></textarea></label>
-          <label class="full upload-box">Photos — 3 to 8 images<input id="photoInput" name="photos" type="file" accept="image/*" multiple required><small>Images remain in this browser in v0.1 preview mode; production storage will be connected in the backend phase.</small></label>
+          <label>Jeweler / brand<input name="brand" required maxlength="120"></label><label>Country<input name="country" required maxlength="80"></label>
+          <label>Material<input name="material" required placeholder="18K gold, sterling silver…"></label><label>Weight<input name="weight" placeholder="e.g. 12.4 g"></label>
+          <label>Dimensions / size<input name="dimensions" required placeholder="Ring size, length, width…"></label><label>Quantity<input name="quantity" type="number" min="0" step="1" required value="1"></label>
+          <label>Availability<select name="availability" required><option>In stock</option><option>Made to order</option><option>Sold</option></select></label><label>Jeweler base price (USD)<input name="basePrice" type="number" min="0" step="0.01" required placeholder="0.00"></label>
+          <label>KRISTI retail price<input value="Set during KRISTI review" disabled></label><label class="full">Short description<textarea name="description" required maxlength="700" rows="5" placeholder="Materials, technique, story, notable details…"></textarea></label>
+          <label class="full upload-box">Photos — add 3 to 8 images<input id="photoInput" name="photos" type="file" accept="image/*" multiple><small>You may choose several photos at once or add them one selection at a time. Maximum 8. Images remain in this browser in v0.1 preview mode.</small></label>
         </div>
         <div id="photoPreview" class="photo-preview" aria-live="polite"></div>
-        <div class="form-actions"><button class="button secondary" type="button" id="saveDraft">Save Draft</button><button class="button" type="submit">Submit for KRISTI Review</button></div>
-        <p id="formMessage" class="form-message" role="status"></p>
+        <div class="form-actions"><button class="button secondary" type="button" id="saveDraft">Save Draft</button><button class="button" type="submit">Submit for KRISTI Review</button></div><p id="formMessage" class="form-message" role="status"></p>
       </form>
     </section>
-
-    <section id="review" class="view">
-      <div class="panel">
-        <div class="section-title"><div><p class="eyebrow">KRISTI admin</p><h2>Pending Review</h2></div><span class="pill">Preview workflow</span></div>
-        <p class="admin-note">In production this section will require KRISTI administrator authentication. For v0.1 it demonstrates the approval workflow only.</p>
-        <div id="reviewList" class="review-list"><p class="empty">No jewelry is waiting for review.</p></div>
-      </div>
-    </section>
+    <section id="review" class="view"><div class="panel"><div class="section-title"><div><p class="eyebrow">KRISTI admin</p><h2>Pending Review</h2></div><span class="pill">Preview workflow</span></div><p class="admin-note">In production this section will require KRISTI administrator authentication. For v0.1 it demonstrates the approval workflow only.</p><div id="reviewList" class="review-list"><p class="empty">No jewelry is waiting for review.</p></div></div></section>
   </main>
-
   <footer>KRISTI · Jewelry from the Future · Portal v0.1</footer>
-  <script src="app.js?v=20260817-01"></script>
+  <script src="app.js?v=20260817-02"></script>
 </body>
 </html>
