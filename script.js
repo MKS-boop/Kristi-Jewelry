@@ -14,7 +14,11 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
       dimensions:'54–57 cm',
       retailPrice:2500,
       description:'Handcrafted 18K gold crown set with emeralds and diamonds. A unique statement piece created with traditional fine-jewelry craftsmanship.',
-      images:[]
+      images:[
+        '/WhatsApp%20Image%202026-08-17%20at%206.25.42%20PM%20(1).jpeg',
+        '/WhatsApp%20Image%202026-08-17%20at%206.35.32%20PM.jpeg',
+        '/WhatsApp%20Image%202026-08-17%20at%206.36.17%20PM.jpeg'
+      ]
     }
   ];
 
@@ -50,6 +54,9 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
       .published-media{min-height:360px;background:linear-gradient(135deg,#0d1712,#1c3a2c);display:flex;align-items:center;justify-content:center;position:relative}
       .published-media img{width:100%;height:100%;object-fit:cover;display:block}
       .published-photo-placeholder{padding:30px;text-align:center;color:#d8caa5;font:500 12px/1.5 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+      .published-thumbs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+      .published-thumb{width:68px;height:68px;padding:0;border:1px solid rgba(215,173,91,.35);border-radius:8px;overflow:hidden;background:#0d1712;cursor:pointer}
+      .published-thumb img{width:100%;height:100%;object-fit:cover;display:block}
       .published-body{padding:34px 34px 34px 6px;display:flex;flex-direction:column;justify-content:center}
       .published-body h2{margin:0 0 8px;font-size:clamp(28px,4vw,48px)}
       .published-brand{margin:0 0 22px;color:#bcae8b;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
@@ -72,8 +79,10 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
   function publishedCard(piece){
     const el=document.createElement('article');
     el.className='published-card';
-    const media=piece.images&&piece.images.length?'<img src="'+piece.images[0]+'" alt="'+piece.name+'">':'<div class="published-photo-placeholder">Official product photography<br>pending publication</div>';
-    el.innerHTML='<div class="published-media">'+media+'<span class="published-badge">Published</span></div><div class="published-body"><p class="eyebrow">Available through KRISTI</p><h2>'+piece.name+'</h2><p class="published-brand">'+piece.brand+' · '+piece.country+'</p><p class="published-price">'+money(piece.retailPrice)+'</p><p class="published-description">'+piece.description+'</p><ul class="published-specs"><li><strong>Material</strong>'+piece.material+'</li><li><strong>Weight</strong>'+piece.weight+'</li><li><strong>Size</strong>'+piece.dimensions+'</li><li><strong>Status</strong>Published</li></ul></div>';
+    const hasImages=piece.images&&piece.images.length;
+    const media=hasImages?'<img class="published-main-image" src="'+piece.images[0]+'" alt="'+piece.name+'">':'<div class="published-photo-placeholder">Official product photography<br>pending publication</div>';
+    const thumbs=hasImages&&piece.images.length>1?'<div class="published-thumbs">'+piece.images.map((src,i)=>'<button class="published-thumb" type="button" data-gallery-src="'+src+'" aria-label="View '+piece.name+' image '+(i+1)+'"><img src="'+src+'" alt=""></button>').join('')+'</div>':'';
+    el.innerHTML='<div class="published-media">'+media+'<span class="published-badge">Published</span></div><div class="published-body"><p class="eyebrow">Available through KRISTI</p><h2>'+piece.name+'</h2><p class="published-brand">'+piece.brand+' · '+piece.country+'</p><p class="published-price">'+money(piece.retailPrice)+'</p><p class="published-description">'+piece.description+'</p><ul class="published-specs"><li><strong>Material</strong>'+piece.material+'</li><li><strong>Weight</strong>'+piece.weight+'</li><li><strong>Size</strong>'+piece.dimensions+'</li><li><strong>Status</strong>Published</li></ul>'+thumbs+'</div>';
     return el;
   }
 
@@ -101,5 +110,9 @@ document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
   document.addEventListener('DOMContentLoaded',schedule,{once:true});if(document.readyState!=='loading')schedule();window.addEventListener('load',schedule,{once:true});
   window.addEventListener('resize',()=>{const a=document.getElementById('productGrid'),b=document.getElementById('conceptProductGrid');if(a)styleGrid(a);if(b)styleGrid(b);},{passive:true});
   document.addEventListener('change',e=>{if(e.target&&e.target.id==='languageSelect')setTimeout(render,0);});
-  document.addEventListener('click',e=>{const btn=e.target.closest&&e.target.closest('.concept-button');if(!btn)return;const id=btn.dataset.pieceId;const p=[...greenPieces,...conceptPieces].find(x=>x.id===id);if(!p)return;setTimeout(()=>{const img=document.getElementById('conceptImage');if(img)img.src=p.src;const t=document.getElementById('conceptTitle');if(t)t.textContent=p.name;},0);});
+  document.addEventListener('click',e=>{
+    const thumb=e.target.closest&&e.target.closest('.published-thumb');
+    if(thumb){const card=thumb.closest('.published-card');const img=card&&card.querySelector('.published-main-image');if(img)img.src=thumb.dataset.gallerySrc;return;}
+    const btn=e.target.closest&&e.target.closest('.concept-button');if(!btn)return;const id=btn.dataset.pieceId;const p=[...greenPieces,...conceptPieces].find(x=>x.id===id);if(!p)return;setTimeout(()=>{const img=document.getElementById('conceptImage');if(img)img.src=p.src;const t=document.getElementById('conceptTitle');if(t)t.textContent=p.name;},0);
+  });
 })();
