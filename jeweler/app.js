@@ -14,19 +14,25 @@ tabs.forEach(t=>t.addEventListener('click',()=>go(t.dataset.view)));
 document.addEventListener('click',e=>{const target=e.target.closest('[data-go]');if(target)go(target.dataset.go);});
 
 function escapeHTML(value=''){return String(value).replace(/[&<>'\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c]));}
+function money(value){return Number(value).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
 function counts(){
   document.getElementById('draftCount').textContent=state.submissions.filter(x=>x.status==='Draft').length;
   document.getElementById('pendingCount').textContent=state.submissions.filter(x=>x.status==='Pending Review').length;
+  const publishedCount=document.getElementById('publishedCount');
+  if(publishedCount) publishedCount.textContent=state.submissions.filter(x=>x.status==='Published').length;
 }
 function render(){
   counts();
   const list=document.getElementById('submissionList');
   const review=document.getElementById('reviewList');
   if(!state.submissions.length) list.innerHTML='<p class="empty">No submissions yet. Add the first jewelry piece to begin.</p>';
-  else list.innerHTML=[...state.submissions].reverse().map(x=>`<article class="submission"><div><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.brand)} · ${escapeHTML(x.material)} · $${Number(x.basePrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} base price</p></div><span class="status-badge">${escapeHTML(x.status)}</span></article>`).join('');
+  else list.innerHTML=[...state.submissions].reverse().map(x=>{
+    const retail=x.status==='Published'&&x.retailPrice?` · $${money(x.retailPrice)} retail price`:'';
+    return `<article class="submission"><div><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.brand)} · ${escapeHTML(x.material)} · $${money(x.basePrice)} base price${retail}</p></div><span class="status-badge">${escapeHTML(x.status)}</span></article>`;
+  }).join('');
   const pending=state.submissions.filter(x=>x.status==='Pending Review');
   if(!pending.length) review.innerHTML='<p class="empty">No jewelry is waiting for review.</p>';
-  else review.innerHTML=pending.map(x=>`<article class="review-card" data-id="${x.id}"><div><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.brand)} · ${escapeHTML(x.country)} · ${escapeHTML(x.availability)}<br>Jeweler base price: $${Number(x.basePrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</p></div><div class="review-actions"><input class="retail-input" type="number" min="0" step="0.01" placeholder="Retail USD" aria-label="Retail price"><button class="button secondary" data-action="reject">Return</button><button class="button" data-action="approve">Approve</button></div></article>`).join('');
+  else review.innerHTML=pending.map(x=>`<article class="review-card" data-id="${x.id}"><div><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.brand)} · ${escapeHTML(x.country)} · ${escapeHTML(x.availability)}<br>Jeweler base price: $${money(x.basePrice)}</p></div><div class="review-actions"><input class="retail-input" type="number" min="0" step="0.01" placeholder="Retail USD" aria-label="Retail price"><button class="button secondary" data-action="reject">Return</button><button class="button" data-action="approve">Approve</button></div></article>`).join('');
 }
 
 function renderPhotos(){
