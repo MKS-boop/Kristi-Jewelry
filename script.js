@@ -1,4 +1,4 @@
-document.write('<script src="/script-base.js?v=20260817-thirteen"><\/script>');
+document.write('<script src="/script-base.js?v=20260817-fourteen"><\/script>');
 
 (function(){
   if(!window.location.pathname.includes('/green/')) return;
@@ -26,15 +26,15 @@ document.write('<script src="/script-base.js?v=20260817-thirteen"><\/script>');
     style.textContent=`
       .product-image-wrap{position:relative;overflow:hidden}
       .concept-preview-badge{
-        position:absolute;left:10px;top:10px;z-index:5;
+        position:absolute;left:11px;top:11px;z-index:5;
         display:inline-flex;align-items:center;justify-content:center;
-        min-width:112px;height:28px;padding:0 11px;box-sizing:border-box;
-        background:#11100d;color:#d7ad5b;border:1px solid rgba(215,173,91,.78);
-        font:600 10px/1 Arial,sans-serif;letter-spacing:1.2px;text-transform:uppercase;
-        box-shadow:0 0 0 4px #11100d;
+        min-width:78px;height:20px;padding:0 7px;box-sizing:border-box;
+        background:#11100d;color:#d7ad5b;border:1px solid rgba(215,173,91,.72);
+        font:600 7px/1 Arial,sans-serif;letter-spacing:.8px;text-transform:uppercase;
+        box-shadow:0 0 0 2px #11100d;
         white-space:nowrap;pointer-events:none;
       }
-      @media(max-width:760px){.concept-preview-badge{left:9px;top:9px;min-width:108px;height:27px;font-size:9.5px}}
+      @media(max-width:760px){.concept-preview-badge{left:10px;top:10px;min-width:76px;height:20px;font-size:7px}}
     `;
     document.head.appendChild(style);
   }
@@ -46,10 +46,7 @@ document.write('<script src="/script-base.js?v=20260817-thirteen"><\/script>');
     return el;
   }
 
-  function styleGrid(grid){
-    grid.style.gridTemplateColumns=window.innerWidth<=760?'1fr':'repeat(5,minmax(0,1fr))';
-    grid.style.gap=window.innerWidth<=760?'18px':'14px';
-  }
+  function styleGrid(grid){grid.style.gridTemplateColumns=window.innerWidth<=760?'1fr':'repeat(5,minmax(0,1fr))';grid.style.gap=window.innerWidth<=760?'18px':'14px';}
 
   function render(){
     installBadgeStyle();
@@ -64,14 +61,8 @@ document.write('<script src="/script-base.js?v=20260817-thirteen"><\/script>');
   }
 
   function schedule(){[40,150,400,900,1700].forEach(ms=>setTimeout(render,ms));}
-  document.addEventListener('DOMContentLoaded',schedule,{once:true});
-  if(document.readyState!=='loading')schedule();
-  window.addEventListener('load',schedule,{once:true});
+  document.addEventListener('DOMContentLoaded',schedule,{once:true});if(document.readyState!=='loading')schedule();window.addEventListener('load',schedule,{once:true});
   window.addEventListener('resize',()=>{const a=document.getElementById('productGrid'),b=document.getElementById('conceptProductGrid');if(a)styleGrid(a);if(b)styleGrid(b);},{passive:true});
   document.addEventListener('change',e=>{if(e.target&&e.target.id==='languageSelect')setTimeout(render,0);});
-  document.addEventListener('click',e=>{
-    const btn=e.target.closest&&e.target.closest('.concept-button');if(!btn)return;
-    const id=btn.dataset.pieceId;const p=[...greenPieces,...conceptPieces].find(x=>x.id===id);if(!p)return;
-    setTimeout(()=>{const img=document.getElementById('conceptImage');if(img)img.src=p.src;const t=document.getElementById('conceptTitle');if(t)t.textContent=p.name;},0);
-  });
+  document.addEventListener('click',e=>{const btn=e.target.closest&&e.target.closest('.concept-button');if(!btn)return;const id=btn.dataset.pieceId;const p=[...greenPieces,...conceptPieces].find(x=>x.id===id);if(!p)return;setTimeout(()=>{const img=document.getElementById('conceptImage');if(img)img.src=p.src;const t=document.getElementById('conceptTitle');if(t)t.textContent=p.name;},0);});
 })();
