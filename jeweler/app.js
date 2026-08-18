@@ -1,0 +1,70 @@
+const STORE_KEY='kristiJewelerPortalV01';
+const state={submissions:JSON.parse(localStorage.getItem(STORE_KEY)||'[]')};
+const tabs=[...document.querySelectorAll('.tab')];
+const views=[...document.querySelectorAll('.view')];
+const form=document.getElementById('jewelryForm');
+const photoInput=document.getElementById('photoInput');
+const photoPreview=document.getElementById('photoPreview');
+const formMessage=document.getElementById('formMessage');
+
+function persist(){localStorage.setItem(STORE_KEY,JSON.stringify(state.submissions));}
+function go(view){tabs.forEach(t=>t.classList.toggle('is-active',t.dataset.view===view));views.forEach(v=>v.classList.toggle('is-active',v.id===view));window.scrollTo({top:0,behavior:'smooth'});}
+tabs.forEach(t=>t.addEventListener('click',()=>go(t.dataset.view)));
+document.addEventListener('click',e=>{const target=e.target.closest('[data-go]');if(target)go(target.dataset.go);});
+
+function escapeHTML(value=''){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function counts(){
+  document.getElementById('draftCount').textContent=state.submissions.filter(x=>x.status==='Draft').length;
+  document.getElementById('pendingCount').textContent=state.submissions.filter(x=>x.status==='Pending Review').length;
+}
+function render(){
+  counts();
+  const list=document.getElementById('submissionList');
+  const review=document.getElementById('reviewList');
+  if(!state.submissions.length) list.innerHTML='<p class="empty">No submissions yet. Add the first jewelry piece to begin.</p>';
+  else list.innerHTML=[...state.submissions].reverse().map(x=>`<article class="submission"><div><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.brand)} · ${escapeHTML(x.material)} · $${Number(x.basePrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} base price</p></div><span class="status-badge">${escapeHTML(x.status)}</span></article>`).join('');
+  const pending=state.submissions.filter(x=>x.status==='Pending Review');
+  if(!pending.length) review.innerHTML='<p class="empty">No jewelry is waiting for review.</p>';
+  else review.innerHTML=pending.map(x=>`<article class="review-card" data-id="${x.id}"><div><h3>${escapeHTML(x.name)}</h3><p>${escapeHTML(x.brand)} · ${escapeHTML(x.country)} · ${escapeHTML(x.availability)}<br>Jeweler base price: $${Number(x.basePrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</p></div><div class="review-actions"><input class="retail-input" type="number" min="0" step="0.01" placeholder="Retail USD" aria-label="Retail price"><button class="button secondary" data-action="reject">Return</button><button class="button" data-action="approve">Approve</button></div></article>`).join('');
+}
+
+function validatePhotos(){
+  const files=[...photoInput.files];
+  photoPreview.innerHTML='';
+  files.slice(0,8).forEach(file=>{
+    const box=document.createElement('div');box.className='photo-thumb';
+    const img=document.createElement('img');img.alt='Jewelry preview';img.src=URL.createObjectURL(file);box.appendChild(img);photoPreview.appendChild(box);
+  });
+  if(files.length && (files.length<3||files.length>8)) formMessage.textContent='Please select between 3 and 8 photos.';
+  else formMessage.textContent='';
+  return files.length>=3&&files.length<=8;
+}
+photoInput.addEventListener('change',validatePhotos);
+
+function dataFromForm(status){
+  const data=new FormData(form);
+  return {id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name:data.get('name'),brand:data.get('brand'),country:data.get('country'),material:data.get('material'),weight:data.get('weight'),dimensions:data.get('dimensions'),quantity:data.get('quantity'),availability:data.get('availability'),basePrice:data.get('basePrice'),description:data.get('description'),photoNames:[...photoInput.files].map(f=>f.name),status,createdAt:new Date().toISOString()};
+}
+function save(status){
+  if(!form.reportValidity()) return;
+  if(!validatePhotos()){formMessage.textContent='3 to 8 photos are required for a submission.';return;}
+  state.submissions.push(dataFromForm(status));persist();render();
+  form.reset();photoPreview.innerHTML='';
+  formMessage.textContent=status==='Draft'?'Draft saved in this browser.':'Submitted to Pending Review in this v0.1 prototype.';
+  setTimeout(()=>go('dashboard'),650);
+}
+document.getElementById('saveDraft').addEventListener('click',()=>save('Draft'));
+form.addEventListener('submit',e=>{e.preventDefault();save('Pending Review');});
+
+document.getElementById('reviewList').addEventListener('click',e=>{
+  const button=e.target.closest('[data-action]');if(!button)return;
+  const card=button.closest('.review-card');const item=state.submissions.find(x=>x.id===card.dataset.id);if(!item)return;
+  if(button.dataset.action==='approve'){
+    const retail=card.querySelector('.retail-input').value;
+    if(!retail){card.querySelector('.retail-input').focus();return;}
+    item.retailPrice=retail;item.status='Published';
+  }else item.status='Draft';
+  persist();render();
+});
+
+render();
