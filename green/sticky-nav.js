@@ -27,8 +27,8 @@
     if(selector==='#productGrid') el=$('.concept-second-heading') || el;
     if(!el) return;
     const navHeight=header.getBoundingClientRect().height || 68;
-    const extraGap=selector==='#contact' ? 28 : 0;
-    const top=window.scrollY+el.getBoundingClientRect().top-navHeight-extraGap;
+    const contactAdjustment=selector==='#contact' ? 90 : 0;
+    const top=window.scrollY+el.getBoundingClientRect().top-navHeight+contactAdjustment;
     window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
   };
 
