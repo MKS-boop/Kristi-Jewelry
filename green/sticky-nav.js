@@ -15,15 +15,22 @@
   const CART_KEY='kristiCart';
   const crownItem={id:'emerald-crown',name:'Emerald Crown',maker:'Kristi & G · Armenia',price:'$2,500.00'};
 
+  const readCookie=()=>{
+    const row=document.cookie.split('; ').find(v=>v.startsWith(CART_KEY+'='));
+    if(!row) return [];
+    try{const parsed=JSON.parse(decodeURIComponent(row.split('=').slice(1).join('=')));return Array.isArray(parsed)?parsed:[];}catch(_){return [];}
+  };
   const readCart=()=>{
     try{
       const raw=localStorage.getItem(CART_KEY);
-      const parsed=raw?JSON.parse(raw):[];
-      return Array.isArray(parsed)?parsed:[];
-    }catch(_){return [];}
+      if(raw){const parsed=JSON.parse(raw);if(Array.isArray(parsed)) return parsed;}
+    }catch(_){}
+    return readCookie();
   };
   const writeCart=(items)=>{
-    try{localStorage.setItem(CART_KEY,JSON.stringify(items));}catch(_){}
+    const value=JSON.stringify(items);
+    try{localStorage.setItem(CART_KEY,value);}catch(_){}
+    document.cookie=CART_KEY+'='+encodeURIComponent(value)+'; Max-Age=2592000; Path=/; SameSite=Lax';
   };
   const renderCart=()=>{
     if(!cartContent) return;
