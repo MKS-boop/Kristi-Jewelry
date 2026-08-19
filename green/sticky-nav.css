@@ -18,8 +18,8 @@
 .sticky-menu-box a:last-child{border-bottom:0}
 .sticky-menu-box a:hover{background:rgba(215,173,91,.08)}
 
-/* Keep anchor targets fully visible below the sticky navigation. */
-#shop,#productGrid,#about,#contact{scroll-margin-top:88px}
+/* Align anchor targets directly below the sticky navigation, without exposing the previous section. */
+#shop,#productGrid,#about,#contact{scroll-margin-top:68px}
 
 @media(max-width:900px){.site-sticky-nav-inner{gap:12px;padding:0 14px}.sticky-brand span:not(.sticky-k-mark){display:none}.sticky-links{gap:11px;overflow-x:auto;scrollbar-width:none}.sticky-links::-webkit-scrollbar{display:none}.sticky-links a{font-size:11px;white-space:nowrap}.sticky-actions{gap:5px}.sticky-icon{width:34px;height:34px}}
-@media(max-width:620px){.sticky-links a:nth-child(n+4){display:none}.site-sticky-nav-inner{min-height:58px}.sticky-links a{padding:21px 2px 19px}.sticky-k-mark{width:32px;height:32px;font-size:17px}.sticky-search-box,.sticky-menu-box{top:42px}#shop,#productGrid,#about,#contact{scroll-margin-top:74px}}
+@media(max-width:620px){.sticky-links a:nth-child(n+4){display:none}.site-sticky-nav-inner{min-height:58px}.sticky-links a{padding:21px 2px 19px}.sticky-k-mark{width:32px;height:32px;font-size:17px}.sticky-search-box,.sticky-menu-box{top:42px}#shop,#productGrid,#about,#contact{scroll-margin-top:58px}}
