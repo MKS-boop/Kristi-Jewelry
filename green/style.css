@@ -69,7 +69,7 @@ html[lang="de"] .about-content,html[lang="de"] .about-section h1,html[lang="de"]
 html[lang="ar"] .about-content,html[lang="ar"] .about-section h1,html[lang="ar"] .about-section h2,html[lang="fa"] .about-content,html[lang="fa"] .about-section h1,html[lang="fa"] .about-section h2 { font-family:Tahoma,'Segoe UI',Arial,sans-serif; }
 html[lang="hi"] .about-content,html[lang="hi"] .about-section h1,html[lang="hi"] .about-section h2 { font-family:'Nirmala UI','Mangal','Segoe UI',Arial,sans-serif; }
 html[lang="zh"] .about-content,html[lang="zh"] .about-section h1,html[lang="zh"] .about-section h2 { font-family:'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Arial,sans-serif; }
-.contact-section { background:#06382b; color:#edf4f0; }
+.contact-section { background:#06382b; color:#edf4f0; min-height:calc(100vh - 68px); }
 .contact-section h1,.contact-section .eyebrow { color:#e2ad4b; }
 .site-footer { border-top:1px solid #80672e; padding:28px 0; background:#03271e; color:#d9bd8e; font-size:.9rem; }
 .footer-wrap { display:flex; justify-content:space-between; gap:20px; }
@@ -114,12 +114,8 @@ html[dir="rtl"] .concept-badge { left:auto; right:22px; }
   .about-lead{font-size:1.18rem!important;line-height:1.58!important}
   .about-signature{font-size:1.34rem!important}
   .about-divider{margin:30px 0 26px}
+  .contact-section{min-height:calc(100vh - 58px)}
   .contact-section .button{width:100%;text-align:center;padding:13px 18px}
   .site-footer{padding:22px 0}
   .footer-wrap{flex-direction:column;gap:6px;text-align:center;font-size:.82rem}
-}
-@media(max-width:420px){
-  .language-bar{top:52px;right:6px;width:98px}
-  .language-bar-inner{height:27px}
-  .language-select{width:90px;font-size:.56rem}
 }
