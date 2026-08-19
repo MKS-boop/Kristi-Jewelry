@@ -11,12 +11,27 @@
 <title>Kristi Jewelry — Green 0.2</title>
 <link rel="stylesheet" href="green/style.css?v=20260818-base">
 <link rel="stylesheet" href="green/rebuild.css?v=20260818-rebuild-1">
+<link rel="stylesheet" href="green/sticky-nav.css?v=20260818-nav-1">
 <style>
 .published-static{margin:26px 0 46px}.published-static-card{display:grid;grid-template-columns:minmax(300px,.95fr) minmax(320px,1.05fr);gap:28px;border:1px solid rgba(215,173,91,.28);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.035)}.published-static-media{position:relative;min-height:420px;background:#10251c}.published-static-media>img{width:100%;height:100%;object-fit:cover;display:block}.published-static-badge{position:absolute;left:12px;top:12px;padding:7px 10px;background:#123629;color:#f0d89b;border:1px solid #c9a85b;border-radius:999px;font:600 10px/1 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}.published-static-body{padding:38px 36px 34px 8px;display:flex;flex-direction:column;justify-content:center}.published-static-body h2{font-size:clamp(32px,4vw,52px);margin:0 0 8px}.published-static-price{font-size:26px;color:#e3c575;margin:6px 0 20px}.published-static-meta{color:#bcae8b;text-transform:uppercase;letter-spacing:.06em;font-size:13px}.published-static-desc{line-height:1.65;max-width:650px}.published-static-specs{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;list-style:none;padding:0;margin:20px 0}.published-static-specs strong{display:block;color:#bcae8b;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.published-static-thumbs{display:flex;gap:10px;flex-wrap:wrap}.bracelet-modal-image{object-fit:cover!important;object-position:50% 27%!important}
 @media(max-width:760px){.published-static-card{grid-template-columns:1fr}.published-static-media{min-height:320px}.published-static-body{padding:24px}.published-static-specs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<header class="site-sticky-nav" aria-label="Persistent navigation">
+  <div class="site-sticky-nav-inner">
+    <a class="sticky-brand" href="#home" data-sticky-target="#home" aria-label="Kristi Home"><img src="Kristi-symbol.png" alt=""><span>KRISTI</span></a>
+    <nav class="sticky-links" aria-label="Primary"><a href="#home" data-sticky-target="#home">Home</a><a href="#shop" data-sticky-target="#shop">Shop</a><a href="#productGrid" data-sticky-target="#productGrid">Collections</a><a href="#about" data-sticky-target="#about">About</a><a href="#contact" data-sticky-target="#contact">Contact</a></nav>
+    <div class="sticky-actions">
+      <button class="sticky-icon" type="button" data-sticky-search aria-label="Search">⌕</button>
+      <a class="sticky-icon" href="/jeweler/" aria-label="Account">♙</a>
+      <a class="sticky-icon" href="#shop" data-sticky-target="#shop" aria-label="Cart">🛒</a>
+      <button class="sticky-icon" type="button" data-sticky-menu aria-label="Menu">☰</button>
+      <div class="sticky-search-box"><input id="stickySiteSearch" type="search" placeholder="Search jewelry" aria-label="Search jewelry"></div>
+      <nav class="sticky-menu-box" aria-label="Quick menu"><a href="#home" data-sticky-target="#home">Home</a><a href="#shop" data-sticky-target="#shop">Shop</a><a href="#productGrid" data-sticky-target="#productGrid">Collections</a><a href="#about" data-sticky-target="#about">About</a><a href="#contact" data-sticky-target="#contact">Contact</a><a href="/jeweler/">Jeweler Portal</a></nav>
+    </div>
+  </div>
+</header>
 <main>
 <section class="hero" id="home" aria-label="Kristi Jewelry hero">
   <div class="hero-frame">
@@ -68,5 +83,6 @@
 <footer class="site-footer"><div class="container footer-wrap"><p>© <span id="year"></span> Kristi Jewelry</p><p data-i18n="tagline">Jewelry from the Future.</p></div></footer>
 <script src="green/app.js?v=20260818-rebuild-1" defer></script>
 <script src="green/dna-bracelet-image.js?v=20260818-dna-bracelet" defer></script>
+<script src="green/sticky-nav.js?v=20260818-nav-1" defer></script>
 </body>
 </html>
