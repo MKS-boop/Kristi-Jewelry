@@ -17,5 +17,9 @@
 .sticky-menu-box a{display:block;padding:11px 12px;color:#f4ddb0;text-decoration:none;border-bottom:1px solid rgba(215,173,91,.14);font:500 14px/1.25 Georgia,'Times New Roman',serif}
 .sticky-menu-box a:last-child{border-bottom:0}
 .sticky-menu-box a:hover{background:rgba(215,173,91,.08)}
+
+/* Keep anchor targets fully visible below the sticky navigation. */
+#shop,#productGrid,#about,#contact{scroll-margin-top:88px}
+
 @media(max-width:900px){.site-sticky-nav-inner{gap:12px;padding:0 14px}.sticky-brand span{display:none}.sticky-links{gap:11px;overflow-x:auto;scrollbar-width:none}.sticky-links::-webkit-scrollbar{display:none}.sticky-links a{font-size:11px;white-space:nowrap}.sticky-actions{gap:5px}.sticky-icon{width:34px;height:34px}}
-@media(max-width:620px){.sticky-links a:nth-child(n+4){display:none}.site-sticky-nav-inner{min-height:58px}.sticky-links a{padding:21px 2px 19px}.sticky-brand img{width:32px;height:32px}.sticky-search-box,.sticky-menu-box{top:42px}}
+@media(max-width:620px){.sticky-links a:nth-child(n+4){display:none}.site-sticky-nav-inner{min-height:58px}.sticky-links a{padding:21px 2px 19px}.sticky-brand img{width:32px;height:32px}.sticky-search-box,.sticky-menu-box{top:42px}#shop,#productGrid,#about,#contact{scroll-margin-top:74px}}
