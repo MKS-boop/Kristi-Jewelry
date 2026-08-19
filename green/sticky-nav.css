@@ -1,7 +1,7 @@
 .site-sticky-nav{position:sticky;top:0;z-index:900;background:rgba(5,35,28,.96);border-bottom:1px solid rgba(215,173,91,.32);backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.18)}
 .site-sticky-nav-inner{max-width:1380px;margin:0 auto;min-height:68px;padding:0 22px;display:flex;align-items:center;gap:24px}
 .sticky-brand{display:flex;align-items:center;gap:10px;color:#f4ddb0;text-decoration:none;flex:0 0 auto}
-.sticky-k-mark{width:38px;height:38px;border:1px solid rgba(215,173,91,.72);border-radius:50%;display:grid;place-items:center;color:#f4ddb0;font:600 20px/1 Georgia,'Times New Roman',serif;letter-spacing:0;background:rgba(215,173,91,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
+.sticky-k-mark{width:38px;height:38px;border:2px solid #d7ad5b;border-radius:50%;display:grid;place-items:center;color:#f4ddb0;font:600 20px/1 Georgia,'Times New Roman',serif;letter-spacing:0;background:rgba(215,173,91,.08);box-shadow:0 0 0 1px rgba(255,255,255,.08),inset 0 0 0 1px rgba(0,0,0,.18);flex:0 0 38px}
 .sticky-brand span:not(.sticky-k-mark){font:600 18px/1 Georgia,'Times New Roman',serif;letter-spacing:.22em}
 .sticky-links{display:flex;align-items:center;gap:20px;margin-right:auto}
 .sticky-links a{color:#f4ead5;text-decoration:none;font:600 13px/1 Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:26px 2px 24px;border-bottom:2px solid transparent;transition:color .18s ease,border-color .18s ease}
@@ -18,8 +18,8 @@
 .sticky-menu-box a:last-child{border-bottom:0}
 .sticky-menu-box a:hover{background:rgba(215,173,91,.08)}
 
-/* Align anchor targets directly below the sticky navigation, without exposing the previous section. */
-#shop,#productGrid,#about,#contact{scroll-margin-top:68px}
+/* Let the sticky navigation overlay the section edge so no strip of the previous section remains visible. */
+#shop,#productGrid,#about,#contact{scroll-margin-top:0}
 
 @media(max-width:900px){.site-sticky-nav-inner{gap:12px;padding:0 14px}.sticky-brand span:not(.sticky-k-mark){display:none}.sticky-links{gap:11px;overflow-x:auto;scrollbar-width:none}.sticky-links::-webkit-scrollbar{display:none}.sticky-links a{font-size:11px;white-space:nowrap}.sticky-actions{gap:5px}.sticky-icon{width:34px;height:34px}}
-@media(max-width:620px){.sticky-links a:nth-child(n+4){display:none}.site-sticky-nav-inner{min-height:58px}.sticky-links a{padding:21px 2px 19px}.sticky-k-mark{width:32px;height:32px;font-size:17px}.sticky-search-box,.sticky-menu-box{top:42px}#shop,#productGrid,#about,#contact{scroll-margin-top:58px}}
+@media(max-width:620px){.sticky-links a:nth-child(n+4){display:none}.site-sticky-nav-inner{min-height:58px}.sticky-links a{padding:21px 2px 19px}.sticky-k-mark{width:32px;height:32px;flex-basis:32px;font-size:17px}.sticky-search-box,.sticky-menu-box{top:42px}#shop,#productGrid,#about,#contact{scroll-margin-top:0}}
