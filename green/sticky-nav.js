@@ -27,9 +27,8 @@
     if(selector==='#productGrid') el=$('.concept-second-heading') || el;
     if(!el) return;
     const navHeight=header.getBoundingClientRect().height || 68;
-    // Align the target directly below the fixed navigation. The previous
-    // additional 14px offset exposed the page background as a white strip.
-    const top=window.scrollY+el.getBoundingClientRect().top-navHeight;
+    const extraGap=selector==='#contact' ? 28 : 0;
+    const top=window.scrollY+el.getBoundingClientRect().top-navHeight-extraGap;
     window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
   };
 
