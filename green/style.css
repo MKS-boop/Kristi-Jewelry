@@ -47,7 +47,7 @@ h1 { margin:0 0 16px; font-size:clamp(2.1rem,4vw,3.4rem); }
 .concept-notice strong { color:#efc468; letter-spacing:.08em; text-transform:uppercase; }
 .concept-future { margin:0; color:#a9c0b7; font-size:.9rem; }
 .concept-modal-close { position:absolute; z-index:3; top:14px; right:16px; width:42px; height:42px; border:1px solid rgba(237,199,120,.55); border-radius:50%; background:rgba(3,43,32,.88); color:#f1cd83; cursor:pointer; font-size:1.8rem; line-height:1; }
-.about-section { position:relative; overflow:hidden; background:radial-gradient(circle at 18% 26%,rgba(210,151,45,.12),transparent 28%),linear-gradient(180deg,#063c2e 0%,#0a4a38 52%,#03271e 100%); color:#e6eee9; }
+.about-section { position:relative; overflow:hidden; background:radial-gradient(circle at 18% 26%,rgba(210,151,45,.12),transparent 28%),linear-gradient(180deg,#063c2e 0%,#0a4a38 52%,#03271e 100%); color:#e6eee9; box-shadow:0 -18px 0 #063c2e; }
 .about-wrap { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(0,1.35fr); gap:clamp(44px,7vw,96px); align-items:start; }
 .about-symbol-wrap { position:sticky; top:40px; }
 .about-symbol { display:block; width:min(100%,470px); aspect-ratio:1/1; object-fit:cover; margin:0 auto; border:1px solid rgba(218,167,77,.24); box-shadow:0 30px 80px rgba(0,0,0,.28); }
@@ -120,7 +120,6 @@ html[dir="rtl"] .concept-badge { left:auto; right:22px; }
 }
 @media(max-width:420px){
   .language-bar{top:52px;right:6px;width:98px}
-  .language-select{width:90px;font-size:.55rem}
-  .section{padding:38px 0}
-  .container{width:90%}
+  .language-bar-inner{height:27px}
+  .language-select{width:90px;font-size:.56rem}
 }
