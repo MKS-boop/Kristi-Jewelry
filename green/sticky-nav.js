@@ -28,8 +28,7 @@
     if(!el) return;
     const navHeight=header.getBoundingClientRect().height || 68;
     const contactAdjustment=selector==='#contact' ? 90 : 0;
-    const shopAdjustment=selector==='#shop' ? 14 : 0;
-    const top=window.scrollY+el.getBoundingClientRect().top-navHeight+contactAdjustment+shopAdjustment;
+    const top=window.scrollY+el.getBoundingClientRect().top-navHeight+contactAdjustment;
     window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
   };
 
