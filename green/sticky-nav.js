@@ -26,10 +26,7 @@
     let el=$(selector);
     if(selector==='#productGrid') el=$('.concept-second-heading') || el;
     if(!el) return;
-    const navHeight=header.getBoundingClientRect().height || 68;
-    const contactAdjustment=selector==='#contact' ? 90 : 0;
-    const top=window.scrollY+el.getBoundingClientRect().top-navHeight+contactAdjustment;
-    window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+    el.scrollIntoView({behavior:'smooth',block:'start'});
   };
 
   $$('[data-sticky-target]',header).forEach(link=>link.addEventListener('click',e=>{
