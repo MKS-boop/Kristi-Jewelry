@@ -38,7 +38,9 @@
 .product-card-body{display:flex;flex:1;flex-direction:column}
 .product-card-body .concept-button{margin-top:auto;align-self:flex-start;touch-action:manipulation}
 .product-card[data-piece-id="green-bracelet"] .product-image{object-fit:cover;object-position:50% 27%;transform:scale(1.34);transform-origin:50% 27%}
-.concept-second-heading{margin-top:54px}
+/* Pull the second/Future Concepts row upward so the two catalog rows read as one section. */
+.concept-second-heading{margin-top:24px!important;margin-bottom:20px!important}
+#conceptProductGrid{margin-top:0!important}
 .concept-modal{z-index:1000!important}
 .concept-modal.is-open{display:grid}
 .concept-modal-panel,.concept-modal-grid{overflow:hidden}
@@ -57,4 +59,5 @@
   .hero-browse{left:7.2%;top:65.2%;width:23.6%;height:9.4%}.hero-shopnow{left:30.8%;top:65.2%;width:16.9%;height:9.4%}
   .product-grid{grid-template-columns:1fr!important;gap:18px!important}
   .menu-panel{width:min(230px,78vw);right:2.5%;top:11.2%}
+  .concept-second-heading{margin-top:20px!important;margin-bottom:16px!important}
 }
