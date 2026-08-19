@@ -47,7 +47,7 @@
 .concept-modal-backdrop{pointer-events:auto}
 .concept-modal-panel{pointer-events:auto}
 .bracelet-modal-image{object-fit:cover!important;object-position:50% 27%!important;transform:scale(1.34);transform-origin:50% 27%}
-.published-static-badge{top:48px!important}
+.published-static-badge{top:24px!important}
 .published-static-thumbs button{display:block;width:72px;height:72px;padding:0;border:1px solid rgba(215,173,91,.35);border-radius:8px;overflow:hidden;background:transparent;cursor:pointer;touch-action:manipulation}
 .published-static-thumbs button img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 
@@ -61,5 +61,5 @@
   .product-grid{grid-template-columns:1fr!important;gap:18px!important}
   .menu-panel{width:min(230px,78vw);right:2.5%;top:11.2%}
   .concept-second-heading{margin-top:20px!important;margin-bottom:16px!important}
-  .published-static-badge{top:42px!important}
+  .published-static-badge{top:20px!important}
 }
