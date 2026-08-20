@@ -71,7 +71,8 @@
     const item=readCart()[0];
     if(!item){box.innerHTML='<h4>Order Summary</h4><p>Your cart is empty.</p>';return;}
     const qty=Math.max(1,Number(item.quantity)||1), unit=Number(item.unitPrice)||2500;
-    box.innerHTML=`<h4>Order Summary</h4><p class="checkout-summary-name">${item.name||'Emerald Crown'}</p><p class="checkout-summary-meta">${item.maker||'G & Kristi · USA'} · Qty ${qty}</p><div class="checkout-summary-row"><span>${money(unit)} each</span><strong>${money(unit*qty)}</strong></div><div class="checkout-summary-row total"><span>Total</span><span>${money(unit*qty)}</span></div>`;
+    const maker=item.id==='emerald-crown'?'G & Kristi · USA':(item.maker||'G & Kristi · USA');
+    box.innerHTML=`<h4>Order Summary</h4><p class="checkout-summary-name">${item.name||'Emerald Crown'}</p><p class="checkout-summary-meta">${maker} · Qty ${qty}</p><div class="checkout-summary-row"><span>${money(unit)} each</span><strong>${money(unit*qty)}</strong></div><div class="checkout-summary-row total"><span>Total</span><span>${money(unit*qty)}</span></div>`;
   };
 
   const setStep=step=>{
