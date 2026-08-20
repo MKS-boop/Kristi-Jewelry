@@ -21,7 +21,7 @@
     if(!row) return [];
     try{const parsed=JSON.parse(decodeURIComponent(row.split('=').slice(1).join('=')));return Array.isArray(parsed)?parsed:[];}catch(_){return [];}
   };
-  const normalizeCart=items=>(Array.isArray(items)?items:[]).map(item=>({...item,unitPrice:Number(item.unitPrice)||2500,quantity:Math.max(1,Number(item.quantity)||1)}));
+  const normalizeCart=items=>(Array.isArray(items)?items:[]).map(item=>({...item,maker:item.id===crownItem.id?crownItem.maker:item.maker,unitPrice:Number(item.unitPrice)||2500,quantity:Math.max(1,Number(item.quantity)||1)}));
   const readCart=()=>{
     try{
       const raw=localStorage.getItem(CART_KEY);
