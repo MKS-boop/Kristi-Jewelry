@@ -42,7 +42,7 @@
     }else{
       const item=items[0];
       const total=item.unitPrice*item.quantity;
-      cartContent.innerHTML='<div class="cart-item"><strong>'+item.name+'</strong><p>'+item.maker+'</p><p class="cart-unit-price">'+money(item.unitPrice)+' each</p><div class="cart-quantity" aria-label="Quantity"><button type="button" data-cart-minus aria-label="Decrease quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-plus aria-label="Increase quantity">+</button></div><p class="cart-line-total">Total: <strong>'+money(total)+'</strong></p><button class="cart-remove" type="button" data-cart-remove>Remove</button></div><a class="button secondary" href="#shop" data-cart-shop>Continue Shopping</a>';
+      cartContent.innerHTML='<div class="cart-item"><strong>'+item.name+'</strong><p>'+item.maker+'</p><p class="cart-unit-price">'+money(item.unitPrice)+' each</p><div class="cart-quantity" aria-label="Quantity"><button type="button" data-cart-minus aria-label="Decrease quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-plus aria-label="Increase quantity">+</button></div><p class="cart-line-total">Total: <strong>'+money(total)+'</strong></p><button class="cart-remove" type="button" data-cart-remove>Remove</button></div><a class="button secondary" href="#shop" data-cart-shop>Continue Shopping</a><button class="cart-checkout" type="button" data-cart-checkout>Proceed to Checkout</button>';
     }
     cartContent.querySelector('[data-cart-shop]')?.addEventListener('click',e=>{e.preventDefault();closeCart();scrollToTarget('#shop');});
     cartContent.querySelector('[data-cart-remove]')?.addEventListener('click',()=>{writeCart([]);renderCart();});
