@@ -39,9 +39,10 @@
       cartContent.innerHTML='<p>Your cart is currently empty.</p><a class="button secondary" href="#shop" data-cart-shop>Continue Shopping</a>';
     }else{
       const item=items[0];
-      cartContent.innerHTML='<div class="cart-item"><strong>'+item.name+'</strong><p>'+item.maker+'</p><p>'+item.price+'</p></div><a class="button secondary" href="#shop" data-cart-shop>Continue Shopping</a>';
+      cartContent.innerHTML='<div class="cart-item"><strong>'+item.name+'</strong><p>'+item.maker+'</p><p>'+item.price+'</p><button class="cart-remove" type="button" data-cart-remove>Remove</button></div><a class="button secondary" href="#shop" data-cart-shop>Continue Shopping</a>';
     }
     cartContent.querySelector('[data-cart-shop]')?.addEventListener('click',e=>{e.preventDefault();closeCart();scrollToTarget('#shop');});
+    cartContent.querySelector('[data-cart-remove]')?.addEventListener('click',()=>{writeCart([]);renderCart();});
   };
 
   const applyRouteMode=(selector=location.hash)=>{
