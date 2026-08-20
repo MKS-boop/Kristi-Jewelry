@@ -13,7 +13,7 @@
   const cart=$('#cartDrawer');
   const cartContent=$('[data-cart-content]');
   const CART_KEY='kristiCart';
-  const crownItem={id:'emerald-crown',name:'Emerald Crown',maker:'Kristi & G · Armenia',unitPrice:2500,price:'$2,500.00',quantity:1};
+  const crownItem={id:'emerald-crown',name:'Emerald Crown',maker:'G & Kristi · USA',unitPrice:2500,price:'$2,500.00',quantity:1};
   const money=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 
   const readCookie=()=>{
