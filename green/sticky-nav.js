@@ -77,4 +77,11 @@
   menuBtn?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();searchBox?.classList.remove('is-open');menuBox?.classList.toggle('is-open');});
   searchInput?.addEventListener('input',()=>{const q=searchInput.value.trim().toLowerCase();$$('.product-card').forEach(card=>{card.hidden=!!q&&!String(card.dataset.search||'').includes(q);});const crown=$('.published-static');if(crown)crown.hidden=!!q&&!crown.textContent.toLowerCase().includes(q);if(q)scrollToTarget('#shop');});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){searchBox?.classList.remove('is-open');menuBox?.classList.remove('is-open');closeCart();}});
+
+  if(!document.querySelector('link[data-checkout-style]')){
+    const link=document.createElement('link');link.rel='stylesheet';link.href='green/checkout.css?v=20260819-checkout-flow-1';link.dataset.checkoutStyle='';document.head.appendChild(link);
+  }
+  if(!document.querySelector('script[data-checkout-script]')){
+    const script=document.createElement('script');script.src='green/checkout.js?v=20260819-checkout-flow-1';script.defer=true;script.dataset.checkoutScript='';document.body.appendChild(script);
+  }
 })();
