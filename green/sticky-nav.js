@@ -55,7 +55,7 @@
   if('scrollRestoration' in history) history.scrollRestoration='manual';
   const syncStickyNav=()=>{if(!hero){header.style.display='';return;}if(document.body.classList.contains('inner-route')){header.style.display='';return;}const rect=hero.getBoundingClientRect();const onHome=rect.bottom>Math.max(96,window.innerHeight*.18);header.style.display=onHome?'none':'';if(onHome){searchBox?.classList.remove('is-open');menuBox?.classList.remove('is-open');}};
   syncStickyNav();window.addEventListener('scroll',syncStickyNav,{passive:true});window.addEventListener('resize',syncStickyNav);
-  const setHash=(selector)=>{applyRouteMode(selector);if(!selector||selector==='#home'){history.replaceState(null,'',location.pathname+location.search);return;}if(location.hash!==selector)history.replaceState(null,'',selector);};
+  const setHash=(selector)=>{applyRouteMode(selector);syncStickyNav();requestAnimationFrame(syncStickyNav);if(!selector||selector==='#home'){history.replaceState(null,'',location.pathname+location.search);return;}if(location.hash!==selector)history.replaceState(null,'',selector);};
   const routeGap=(selector)=>selector==='#shop'?24:0;
   const targetTop=(el,selector)=>Math.max(0,Math.round(window.scrollY+el.getBoundingClientRect().top-header.getBoundingClientRect().height-routeGap(selector)));
   const scrollToTarget=(selector,{behavior='smooth',updateHash=true}={})=>{let el=$(selector);if(selector==='#productGrid')el=$('.concept-second-heading')||el;if(!el)return;if(updateHash)setHash(selector);else applyRouteMode(selector);if(selector==='#home')window.scrollTo({top:0,left:0,behavior});else requestAnimationFrame(()=>window.scrollTo({top:targetTop(el,selector),left:0,behavior}));setTimeout(syncStickyNav,0);};
