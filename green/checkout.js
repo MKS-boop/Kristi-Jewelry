@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const CART_KEY='kristiCart', CUSTOMER_KEY='kristiCheckoutCustomer', SHIPPING_KEY='kristiCheckoutShipping', PENDING_KEY='kristiStripeSandboxPendingOrder';
-  const STRIPE_TEST_PAYMENT_LINK='https://buy.stripe.com/test_fZudRbbp43Cu17T9hEf3a00';
+  const STRIPE_TEST_PAYMENT_LINK='https://buy.stripe.com/fZudRbbp43Cu17T9hEf3a00';
   const money=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
   const readJSON=(key,fallback)=>{try{const v=JSON.parse(localStorage.getItem(key));return v??fallback;}catch(_){return fallback;}};
   const writeJSON=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value));}catch(_){}};
