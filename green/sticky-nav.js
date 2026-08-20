@@ -79,9 +79,9 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){searchBox?.classList.remove('is-open');menuBox?.classList.remove('is-open');closeCart();}});
 
   if(!document.querySelector('link[data-checkout-style]')){
-    const link=document.createElement('link');link.rel='stylesheet';link.href='green/checkout.css?v=20260819-checkout-flow-1';link.dataset.checkoutStyle='';document.head.appendChild(link);
+    const link=document.createElement('link');link.rel='stylesheet';link.href='green/checkout.css?v=20260819-checkout-flow-2';link.dataset.checkoutStyle='';document.head.appendChild(link);
   }
   if(!document.querySelector('script[data-checkout-script]')){
-    const script=document.createElement('script');script.src='green/checkout.js?v=20260819-checkout-flow-1';script.defer=true;script.dataset.checkoutScript='';document.body.appendChild(script);
+    const script=document.createElement('script');script.src='green/checkout.js?v=20260819-checkout-flow-2';script.defer=true;script.dataset.checkoutScript='';document.body.appendChild(script);
   }
 })();
