@@ -55,14 +55,15 @@
   syncStickyNav();window.addEventListener('scroll',syncStickyNav,{passive:true});window.addEventListener('resize',syncStickyNav);
 
   const setHash=(selector)=>{applyRouteMode(selector);if(!selector||selector==='#home'){history.replaceState(null,'',location.pathname+location.search);return;}if(location.hash!==selector)history.replaceState(null,'',selector);};
-  const targetTop=(el)=>Math.max(0,Math.round(window.scrollY+el.getBoundingClientRect().top-header.getBoundingClientRect().height));
+  const routeGap=(selector)=>selector==='#shop'?24:0;
+  const targetTop=(el,selector)=>Math.max(0,Math.round(window.scrollY+el.getBoundingClientRect().top-header.getBoundingClientRect().height-routeGap(selector)));
   const scrollToTarget=(selector,{behavior='smooth',updateHash=true}={})=>{
     let el=$(selector);
     if(selector==='#productGrid')el=$('.concept-second-heading')||el;
     if(!el)return;
     if(updateHash)setHash(selector);else applyRouteMode(selector);
     if(selector==='#home'){window.scrollTo({top:0,left:0,behavior});}
-    else{requestAnimationFrame(()=>window.scrollTo({top:targetTop(el),left:0,behavior}));}
+    else{requestAnimationFrame(()=>window.scrollTo({top:targetTop(el,selector),left:0,behavior}));}
     setTimeout(syncStickyNav,0);
   };
 
