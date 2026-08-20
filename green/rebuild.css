@@ -27,6 +27,7 @@
 .menu-panel a:last-child{border-bottom:0;color:#d6b066}
 .menu-panel a:hover{background:linear-gradient(90deg,rgba(224,177,83,.14),rgba(224,177,83,.03));color:#fff3d3;padding-left:16px}
 #shop.section{padding-top:32px}
+body.inner-route #shop.section{padding-top:100px}
 .product-grid{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:14px!important;align-items:stretch}
 .product-card{display:flex;flex-direction:column;height:100%;min-width:0}
 .product-image-wrap{position:relative;overflow:hidden;aspect-ratio:1/1;background:#073c2e}
@@ -46,4 +47,4 @@
 .published-static-thumbs button{display:block;width:72px;height:72px;padding:0;border:1px solid rgba(215,173,91,.35);border-radius:8px;overflow:hidden;background:transparent;cursor:pointer;touch-action:manipulation}
 .published-static-thumbs button img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 @media(max-width:1100px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}}
-@media(max-width:760px){#shop.section{padding-top:24px}.hero-home{left:9.6%;width:7.0%}.hero-shop{left:16.3%;width:7.0%}.hero-collections{left:22.9%;width:12.0%}.hero-about{left:34.1%;width:6.6%}.hero-contact{left:40.5%;width:8.9%}.hero-search{left:85.1%;width:3.5%}.hero-account{left:88.2%;width:3.5%}.hero-cart{left:91.1%;width:3.8%}.hero-menu{left:94.8%;width:3.7%}.hero-browse{left:7.2%;top:65.2%;width:23.6%;height:9.4%}.hero-shopnow{left:30.8%;top:65.2%;width:16.9%;height:9.4%}.product-grid{grid-template-columns:1fr!important;gap:18px!important}.menu-panel{width:min(230px,78vw);right:2.5%;top:11.2%}.concept-second-heading{margin-top:20px!important;margin-bottom:16px!important}.published-static-badge{top:12px!important}}
+@media(max-width:760px){#shop.section{padding-top:24px}body.inner-route #shop.section{padding-top:82px}.hero-home{left:9.6%;width:7.0%}.hero-shop{left:16.3%;width:7.0%}.hero-collections{left:22.9%;width:12.0%}.hero-about{left:34.1%;width:6.6%}.hero-contact{left:40.5%;width:8.9%}.hero-search{left:85.1%;width:3.5%}.hero-account{left:88.2%;width:3.5%}.hero-cart{left:91.1%;width:3.8%}.hero-menu{left:94.8%;width:3.7%}.hero-browse{left:7.2%;top:65.2%;width:23.6%;height:9.4%}.hero-shopnow{left:30.8%;top:65.2%;width:16.9%;height:9.4%}.product-grid{grid-template-columns:1fr!important;gap:18px!important}.menu-panel{width:min(230px,78vw);right:2.5%;top:11.2%}.concept-second-heading{margin-top:20px!important;margin-bottom:16px!important}.published-static-badge{top:12px!important}}
