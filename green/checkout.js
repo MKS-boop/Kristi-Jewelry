@@ -1,0 +1,106 @@
+(() => {
+  'use strict';
+  const CART_KEY='kristiCart';
+  const CUSTOMER_KEY='kristiCheckoutCustomer';
+  const SHIPPING_KEY='kristiCheckoutShipping';
+  const money=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const readJSON=(key,fallback)=>{try{const v=JSON.parse(localStorage.getItem(key));return v??fallback;}catch(_){return fallback;}};
+  const writeJSON=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value));}catch(_){}};
+  const readCart=()=>{const items=readJSON(CART_KEY,[]);return Array.isArray(items)?items:[];};
+
+  const root=document.createElement('aside');
+  root.className='checkout-flow';
+  root.id='checkoutFlow';
+  root.setAttribute('aria-hidden','true');
+  root.innerHTML=`
+    <button class="checkout-backdrop" type="button" data-checkout-close aria-label="Close checkout"></button>
+    <section class="checkout-panel" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <div class="checkout-top">
+        <div><p class="eyebrow">KRISTI</p><h2 id="checkoutTitle">Checkout</h2></div>
+        <button class="checkout-close" type="button" data-checkout-close aria-label="Close checkout">×</button>
+      </div>
+      <div class="checkout-progress" aria-label="Checkout progress">
+        <span data-progress="customer" class="is-active">1 Customer</span><span data-progress="shipping">2 Shipping</span><span>3 Review</span><span>4 Payment</span>
+      </div>
+      <div class="checkout-layout">
+        <div>
+          <form class="checkout-step" data-step="customer" novalidate>
+            <h3>Customer Information</h3>
+            <p class="checkout-step-intro">Enter the contact details we should use for this order.</p>
+            <div class="checkout-grid">
+              <div class="checkout-field full"><label for="checkoutEmail">Email</label><input id="checkoutEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+              <div class="checkout-field full"><label for="checkoutPhone">Phone</label><input id="checkoutPhone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000" required></div>
+              <div class="checkout-field"><label for="checkoutFirst">First name</label><input id="checkoutFirst" name="firstName" autocomplete="given-name" required></div>
+              <div class="checkout-field"><label for="checkoutLast">Last name</label><input id="checkoutLast" name="lastName" autocomplete="family-name" required></div>
+            </div>
+            <p class="checkout-error" data-customer-error aria-live="polite"></p>
+            <div class="checkout-actions"><button class="checkout-secondary" type="button" data-back-cart>Back to Cart</button><button class="checkout-primary" type="submit">Continue to Shipping</button></div>
+          </form>
+          <form class="checkout-step" data-step="shipping" hidden novalidate>
+            <h3>Shipping</h3>
+            <p class="checkout-step-intro">Add the delivery address for this order.</p>
+            <div class="checkout-grid">
+              <div class="checkout-field full"><label for="shipAddress">Street address</label><input id="shipAddress" name="address" autocomplete="street-address" required></div>
+              <div class="checkout-field"><label for="shipCity">City</label><input id="shipCity" name="city" autocomplete="address-level2" required></div>
+              <div class="checkout-field"><label for="shipState">State / Region</label><input id="shipState" name="state" autocomplete="address-level1" required></div>
+              <div class="checkout-field"><label for="shipZip">ZIP / Postal code</label><input id="shipZip" name="zip" autocomplete="postal-code" required></div>
+              <div class="checkout-field"><label for="shipCountry">Country</label><select id="shipCountry" name="country" autocomplete="country-name" required><option value="United States">United States</option><option value="Canada">Canada</option><option value="United Kingdom">United Kingdom</option><option value="Armenia">Armenia</option><option value="Other">Other</option></select></div>
+            </div>
+            <p class="checkout-error" data-shipping-error aria-live="polite"></p>
+            <div class="checkout-actions"><button class="checkout-secondary" type="button" data-back-customer>Back</button><button class="checkout-primary" type="submit">Continue to Review</button></div>
+          </form>
+        </div>
+        <aside class="checkout-summary" data-checkout-summary></aside>
+      </div>
+    </section>`;
+  document.body.appendChild(root);
+
+  const cartDrawer=document.querySelector('#cartDrawer');
+  const panel=root.querySelector('.checkout-panel');
+  const customerForm=root.querySelector('[data-step="customer"]');
+  const shippingForm=root.querySelector('[data-step="shipping"]');
+  const customerError=root.querySelector('[data-customer-error]');
+  const shippingError=root.querySelector('[data-shipping-error]');
+
+  const fillForm=(form,data)=>{if(!data)return;Object.entries(data).forEach(([k,v])=>{const el=form.elements.namedItem(k);if(el)el.value=v??'';});};
+  fillForm(customerForm,readJSON(CUSTOMER_KEY,{}));
+  fillForm(shippingForm,readJSON(SHIPPING_KEY,{}));
+
+  const summary=()=>{
+    const box=root.querySelector('[data-checkout-summary]');
+    const item=readCart()[0];
+    if(!item){box.innerHTML='<h4>Order Summary</h4><p>Your cart is empty.</p>';return;}
+    const qty=Math.max(1,Number(item.quantity)||1), unit=Number(item.unitPrice)||2500;
+    box.innerHTML=`<h4>Order Summary</h4><p class="checkout-summary-name">${item.name||'Emerald Crown'}</p><p class="checkout-summary-meta">${item.maker||'G & Kristi · USA'} · Qty ${qty}</p><div class="checkout-summary-row"><span>${money(unit)} each</span><strong>${money(unit*qty)}</strong></div><div class="checkout-summary-row total"><span>Total</span><span>${money(unit*qty)}</span></div>`;
+  };
+
+  const setStep=step=>{
+    customerForm.hidden=step!=='customer';shippingForm.hidden=step!=='shipping';
+    root.querySelector('[data-progress="customer"]').classList.toggle('is-active',step==='customer');
+    root.querySelector('[data-progress="shipping"]').classList.toggle('is-active',step==='shipping');
+    panel.scrollTop=0;
+  };
+  const lock=()=>{document.body.style.overflow='hidden';document.body.classList.add('checkout-open');};
+  const unlock=()=>{document.body.classList.remove('checkout-open');if(!document.body.classList.contains('cart-open'))document.body.style.overflow='';};
+  const open=()=>{if(!readCart().length)return;summary();setStep('customer');cartDrawer?.classList.remove('is-open');cartDrawer?.setAttribute('aria-hidden','true');document.body.classList.remove('cart-open');root.classList.add('is-open');root.setAttribute('aria-hidden','false');lock();setTimeout(()=>root.querySelector('#checkoutEmail')?.focus(),50);};
+  const close=()=>{root.classList.remove('is-open');root.setAttribute('aria-hidden','true');unlock();};
+  const backToCart=()=>{close();document.querySelector('[data-cart-open]')?.click();};
+
+  document.addEventListener('click',e=>{const btn=e.target.closest?.('[data-cart-checkout]');if(btn){e.preventDefault();open();}});
+  root.addEventListener('click',e=>{if(e.target.closest('[data-checkout-close]'))close();if(e.target.closest('[data-back-cart]'))backToCart();if(e.target.closest('[data-back-customer]'))setStep('customer');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('is-open'))close();});
+
+  customerForm.addEventListener('submit',e=>{
+    e.preventDefault();customerError.textContent='';
+    if(!customerForm.reportValidity())return;
+    const data=Object.fromEntries(new FormData(customerForm).entries());
+    writeJSON(CUSTOMER_KEY,data);setStep('shipping');setTimeout(()=>root.querySelector('#shipAddress')?.focus(),30);
+  });
+  shippingForm.addEventListener('submit',e=>{
+    e.preventDefault();shippingError.textContent='';
+    if(!shippingForm.reportValidity())return;
+    const data=Object.fromEntries(new FormData(shippingForm).entries());
+    writeJSON(SHIPPING_KEY,data);
+    shippingError.textContent='Shipping information saved. Order Review is the next checkout step.';
+  });
+})();
