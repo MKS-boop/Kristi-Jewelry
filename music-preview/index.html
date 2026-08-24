@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>KRISTI Music Preview</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff;font-family:Arial,sans-serif}.site-frame{position:fixed;inset:0;width:100%;height:100%;border:0;opacity:0;transition:opacity .9s ease}.site-frame.is-ready{opacity:1}.intro{position:fixed;inset:0;z-index:10;background:#fff;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s ease}.intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none}.inner{position:relative;width:min(92vw,760px);height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.chain{position:absolute;top:0;left:50%;width:3px;height:clamp(120px,22vh,220px);transform:translateX(-50%);background:linear-gradient(90deg,#9f7416,#f1cf70 45%,#9f7416);box-shadow:0 0 8px rgba(183,136,42,.22);animation:chainDrop 1.8s cubic-bezier(.2,.75,.2,1) both}.mark{margin-top:clamp(95px,18vh,180px);width:clamp(105px,14vw,160px);height:clamp(105px,14vw,160px);display:flex;align-items:center;justify-content:center;animation:markDrop 2s cubic-bezier(.2,.75,.2,1) both}.mark img{display:block;max-width:100%;max-height:100%;object-fit:contain}.copy{margin-top:26px;animation:copyIn .9s ease 1.5s both}.title{margin:0;color:#b58a2f;font-family:Georgia,'Times New Roman',serif;font-size:clamp(28px,4vw,44px);font-weight:400;letter-spacing:.045em}.enter{margin-top:18px;padding:10px 18px;border:0;background:transparent;color:#17362d;font:500 13px/1.2 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;position:relative}.enter:after{content:'';position:absolute;left:18px;right:18px;bottom:4px;height:1px;background:#c8a455;transform:scaleX(.35);transition:transform .35s ease}.enter:hover:after,.enter:focus-visible:after{transform:scaleX(1)}.music-toggle{position:fixed;right:18px;bottom:18px;z-index:20;width:42px;height:42px;border:1px solid rgba(215,173,91,.55);border-radius:50%;background:rgba(5,35,28,.9);color:#e4c66f;display:none;align-items:center;justify-content:center;cursor:pointer;font-size:15px}.music-toggle.show{display:flex}@keyframes chainDrop{0%{transform:translate(-50%,-110%);opacity:0}100%{transform:translate(-50%,0);opacity:1}}@keyframes markDrop{0%{transform:translateY(-80px);opacity:0}100%{transform:translateY(0);opacity:1}}@keyframes copyIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<iframe class="site-frame" id="siteFrame" src="/green/" title="KRISTI website"></iframe>
+<div class="intro" id="intro">
+  <div class="inner">
+    <div class="chain"></div>
+    <div class="mark"><img src="/green/kristi-logo-home.png?v=20260823-preview" alt="KRISTI logo"></div>
+    <div class="copy"><h1 class="title">You Are Welcome</h1><button class="enter" id="enter" type="button">Click here</button></div>
+  </div>
+</div>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Mute background music">♫</button>
+<audio id="music" preload="auto" loop src="https://raw.githubusercontent.com/MKS-boop/Kristi-Jewelry/music-intro/green/KRISTI_Parisian_Luxe_Web_Final.mp3"></audio>
+<script>
+(() => {
+  const intro=document.getElementById('intro'), enter=document.getElementById('enter'), audio=document.getElementById('music'), frame=document.getElementById('siteFrame'), toggle=document.getElementById('musicToggle');
+  const target=.07; let raf=null;
+  function fade(to,ms){if(raf)cancelAnimationFrame(raf);const from=audio.volume,start=performance.now();const tick=now=>{const p=Math.min(1,(now-start)/ms);audio.volume=from+(to-from)*p;if(p<1)raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick)}
+  async function start(){enter.disabled=true;audio.volume=0;audio.currentTime=0;try{await audio.play();fade(target,1500);toggle.classList.add('show')}catch(e){toggle.classList.add('show')}frame.classList.add('is-ready');intro.classList.add('is-leaving');setTimeout(()=>intro.remove(),1000)}
+  enter.addEventListener('click',start,{once:true});
+  toggle.addEventListener('click',async()=>{if(audio.paused){try{await audio.play();fade(target,700);toggle.textContent='♫'}catch(e){}}else{fade(0,450);setTimeout(()=>audio.pause(),470);toggle.textContent='♩'}});
+})();
+</script>
+</body>
+</html>
